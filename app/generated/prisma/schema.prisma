@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SpeedTest {
+  id        String   @id @default(cuid())
+  isp       String
+  city      String
+  country   String
+  download  Float
+  createdAt DateTime @default(now())
+}
+
+model FtpLink {
+  id          String   @id @default(cuid())
+  name        String
+  url         String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  workingIn   String[]
+}
+
+model IpTvLink {
+  id          String   @id @default(cuid())
+  name        String
+  url         String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  workingIn   String[]
+}
