@@ -1,5 +1,5 @@
 "use client";
-import { saveSpeedTest } from "@/app/actions/speed-test";
+import { getNetworkInfo, saveSpeedTest } from "@/app/actions/speed-test";
 import { useEffect, useState } from "react";
 import NetworkInfo from "./network-info";
 import SpeedTestComponent from "./speed-test";
@@ -25,32 +25,10 @@ export default function SpeedTestSection() {
   });
 
   // ------------------- Fetch Network Info -------------------
-  const fetchNetworkInfo = async () => {
-    try {
-      const ipResponse = await fetch("http://ip-api.com/json");
-      const ipData = await ipResponse.json();
-
-      setNetworkInfo({
-        ip: ipData.query || "Unknown",
-        isp: ipData.org || "Unknown ISP",
-        city: ipData.city || "Unknown",
-        country: ipData.country || "Unknown",
-        timezone: ipData.timezone || "Unknown",
-      });
-    } catch (error) {
-      console.error("Failed to fetch network info:", error);
-      setNetworkInfo((prev) => ({
-        ...prev,
-        ip: "Failed to load",
-        isp: "Failed to load",
-        city: "Failed to load",
-        country: "Failed to load",
-      }));
-    }
-  };
 
   useEffect(() => {
-    fetchNetworkInfo();
+    // Call server action
+    getNetworkInfo().then(setNetworkInfo);
   }, []);
 
   // ------------------- DOWNLOAD TEST -------------------

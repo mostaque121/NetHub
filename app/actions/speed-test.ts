@@ -42,3 +42,28 @@ export const getLatestTest = unstable_cache(
     tags: ["latest_speed_test"],
   }
 );
+
+export async function getNetworkInfo() {
+  try {
+    // Fetch HTTP API server-side (no mixed content issues)
+    const res = await fetch("http://ip-api.com/json");
+    const data = await res.json();
+
+    return {
+      ip: data.query || "Unknown",
+      isp: data.org || "Unknown ISP",
+      city: data.city || "Unknown",
+      country: data.country || "Unknown",
+      timezone: data.timezone || "Unknown",
+    };
+  } catch (error) {
+    console.error("Failed to fetch network info:", error);
+    return {
+      ip: "Failed to load",
+      isp: "Failed to load",
+      city: "Failed to load",
+      country: "Failed to load",
+      timezone: "Failed to load",
+    };
+  }
+}
