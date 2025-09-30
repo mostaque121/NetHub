@@ -191,11 +191,6 @@ export default function SpeedTestPage() {
     });
   };
 
-  const stopTest = () => {
-    setTestState({ isRunning: false, currentTest: null, progress: 0 });
-    setCurrentResult({});
-  };
-
   const getSpeedColor = (speed: number, type: "download" | "upload") => {
     const threshold = type === "download" ? 25 : 10;
     if (speed >= threshold * 2) return "text-green-400";
@@ -207,15 +202,6 @@ export default function SpeedTestPage() {
     if (ping <= 20) return "text-green-400";
     if (ping <= 50) return "text-yellow-400";
     return "text-red-400";
-  };
-
-  const getSpeedGrade = (download: number, upload: number) => {
-    const avgSpeed = (download + upload) / 2;
-    if (avgSpeed >= 100) return { grade: "A+", color: "text-green-400" };
-    if (avgSpeed >= 50) return { grade: "A", color: "text-green-400" };
-    if (avgSpeed >= 25) return { grade: "B", color: "text-yellow-400" };
-    if (avgSpeed >= 10) return { grade: "C", color: "text-orange-400" };
-    return { grade: "D", color: "text-red-400" };
   };
 
   return (
