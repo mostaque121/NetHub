@@ -19,15 +19,27 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type SpeedTest = $Result.DefaultSelection<Prisma.$SpeedTestPayload>
 /**
- * Model FtpLink
+ * Model ServerLink
  * 
  */
-export type FtpLink = $Result.DefaultSelection<Prisma.$FtpLinkPayload>
+export type ServerLink = $Result.DefaultSelection<Prisma.$ServerLinkPayload>
+
 /**
- * Model IpTvLink
- * 
+ * Enums
  */
-export type IpTvLink = $Result.DefaultSelection<Prisma.$IpTvLinkPayload>
+export namespace $Enums {
+  export const linkType: {
+  TV: 'TV',
+  FTP: 'FTP'
+};
+
+export type linkType = (typeof linkType)[keyof typeof linkType]
+
+}
+
+export type linkType = $Enums.linkType
+
+export const linkType: typeof $Enums.linkType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -158,24 +170,14 @@ export class PrismaClient<
   get speedTest(): Prisma.SpeedTestDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.ftpLink`: Exposes CRUD operations for the **FtpLink** model.
+   * `prisma.serverLink`: Exposes CRUD operations for the **ServerLink** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more FtpLinks
-    * const ftpLinks = await prisma.ftpLink.findMany()
+    * // Fetch zero or more ServerLinks
+    * const serverLinks = await prisma.serverLink.findMany()
     * ```
     */
-  get ftpLink(): Prisma.FtpLinkDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.ipTvLink`: Exposes CRUD operations for the **IpTvLink** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more IpTvLinks
-    * const ipTvLinks = await prisma.ipTvLink.findMany()
-    * ```
-    */
-  get ipTvLink(): Prisma.IpTvLinkDelegate<ExtArgs, ClientOptions>;
+  get serverLink(): Prisma.ServerLinkDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -617,8 +619,7 @@ export namespace Prisma {
 
   export const ModelName: {
     SpeedTest: 'SpeedTest',
-    FtpLink: 'FtpLink',
-    IpTvLink: 'IpTvLink'
+    ServerLink: 'ServerLink'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -637,7 +638,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "speedTest" | "ftpLink" | "ipTvLink"
+      modelProps: "speedTest" | "serverLink"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -715,151 +716,77 @@ export namespace Prisma {
           }
         }
       }
-      FtpLink: {
-        payload: Prisma.$FtpLinkPayload<ExtArgs>
-        fields: Prisma.FtpLinkFieldRefs
+      ServerLink: {
+        payload: Prisma.$ServerLinkPayload<ExtArgs>
+        fields: Prisma.ServerLinkFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.FtpLinkFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload> | null
+            args: Prisma.ServerLinkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.FtpLinkFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           findFirst: {
-            args: Prisma.FtpLinkFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload> | null
+            args: Prisma.ServerLinkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.FtpLinkFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           findMany: {
-            args: Prisma.FtpLinkFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>[]
+            args: Prisma.ServerLinkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
           }
           create: {
-            args: Prisma.FtpLinkCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           createMany: {
-            args: Prisma.FtpLinkCreateManyArgs<ExtArgs>
+            args: Prisma.ServerLinkCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.FtpLinkCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>[]
+            args: Prisma.ServerLinkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
           }
           delete: {
-            args: Prisma.FtpLinkDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           update: {
-            args: Prisma.FtpLinkUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           deleteMany: {
-            args: Prisma.FtpLinkDeleteManyArgs<ExtArgs>
+            args: Prisma.ServerLinkDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.FtpLinkUpdateManyArgs<ExtArgs>
+            args: Prisma.ServerLinkUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.FtpLinkUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>[]
+            args: Prisma.ServerLinkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>[]
           }
           upsert: {
-            args: Prisma.FtpLinkUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$FtpLinkPayload>
+            args: Prisma.ServerLinkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerLinkPayload>
           }
           aggregate: {
-            args: Prisma.FtpLinkAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateFtpLink>
+            args: Prisma.ServerLinkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServerLink>
           }
           groupBy: {
-            args: Prisma.FtpLinkGroupByArgs<ExtArgs>
-            result: $Utils.Optional<FtpLinkGroupByOutputType>[]
+            args: Prisma.ServerLinkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServerLinkGroupByOutputType>[]
           }
           count: {
-            args: Prisma.FtpLinkCountArgs<ExtArgs>
-            result: $Utils.Optional<FtpLinkCountAggregateOutputType> | number
-          }
-        }
-      }
-      IpTvLink: {
-        payload: Prisma.$IpTvLinkPayload<ExtArgs>
-        fields: Prisma.IpTvLinkFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.IpTvLinkFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.IpTvLinkFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          findFirst: {
-            args: Prisma.IpTvLinkFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.IpTvLinkFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          findMany: {
-            args: Prisma.IpTvLinkFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>[]
-          }
-          create: {
-            args: Prisma.IpTvLinkCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          createMany: {
-            args: Prisma.IpTvLinkCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.IpTvLinkCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>[]
-          }
-          delete: {
-            args: Prisma.IpTvLinkDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          update: {
-            args: Prisma.IpTvLinkUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          deleteMany: {
-            args: Prisma.IpTvLinkDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.IpTvLinkUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.IpTvLinkUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>[]
-          }
-          upsert: {
-            args: Prisma.IpTvLinkUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$IpTvLinkPayload>
-          }
-          aggregate: {
-            args: Prisma.IpTvLinkAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateIpTvLink>
-          }
-          groupBy: {
-            args: Prisma.IpTvLinkGroupByArgs<ExtArgs>
-            result: $Utils.Optional<IpTvLinkGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.IpTvLinkCountArgs<ExtArgs>
-            result: $Utils.Optional<IpTvLinkCountAggregateOutputType> | number
+            args: Prisma.ServerLinkCountArgs<ExtArgs>
+            result: $Utils.Optional<ServerLinkCountAggregateOutputType> | number
           }
         }
       }
@@ -960,8 +887,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     speedTest?: SpeedTestOmit
-    ftpLink?: FtpLinkOmit
-    ipTvLink?: IpTvLinkOmit
+    serverLink?: ServerLinkOmit
   }
 
   /* Types for Logging */
@@ -2085,33 +2011,36 @@ export namespace Prisma {
 
 
   /**
-   * Model FtpLink
+   * Model ServerLink
    */
 
-  export type AggregateFtpLink = {
-    _count: FtpLinkCountAggregateOutputType | null
-    _min: FtpLinkMinAggregateOutputType | null
-    _max: FtpLinkMaxAggregateOutputType | null
+  export type AggregateServerLink = {
+    _count: ServerLinkCountAggregateOutputType | null
+    _min: ServerLinkMinAggregateOutputType | null
+    _max: ServerLinkMaxAggregateOutputType | null
   }
 
-  export type FtpLinkMinAggregateOutputType = {
+  export type ServerLinkMinAggregateOutputType = {
     id: string | null
+    type: $Enums.linkType | null
     name: string | null
     url: string | null
     description: string | null
     createdAt: Date | null
   }
 
-  export type FtpLinkMaxAggregateOutputType = {
+  export type ServerLinkMaxAggregateOutputType = {
     id: string | null
+    type: $Enums.linkType | null
     name: string | null
     url: string | null
     description: string | null
     createdAt: Date | null
   }
 
-  export type FtpLinkCountAggregateOutputType = {
+  export type ServerLinkCountAggregateOutputType = {
     id: number
+    type: number
     name: number
     url: number
     description: number
@@ -2121,24 +2050,27 @@ export namespace Prisma {
   }
 
 
-  export type FtpLinkMinAggregateInputType = {
+  export type ServerLinkMinAggregateInputType = {
     id?: true
+    type?: true
     name?: true
     url?: true
     description?: true
     createdAt?: true
   }
 
-  export type FtpLinkMaxAggregateInputType = {
+  export type ServerLinkMaxAggregateInputType = {
     id?: true
+    type?: true
     name?: true
     url?: true
     description?: true
     createdAt?: true
   }
 
-  export type FtpLinkCountAggregateInputType = {
+  export type ServerLinkCountAggregateInputType = {
     id?: true
+    type?: true
     name?: true
     url?: true
     description?: true
@@ -2147,133 +2079,138 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type FtpLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FtpLink to aggregate.
+     * Filter which ServerLink to aggregate.
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FtpLinks to fetch.
+     * Determine the order of ServerLinks to fetch.
      */
-    orderBy?: FtpLinkOrderByWithRelationInput | FtpLinkOrderByWithRelationInput[]
+    orderBy?: ServerLinkOrderByWithRelationInput | ServerLinkOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: FtpLinkWhereUniqueInput
+    cursor?: ServerLinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FtpLinks from the position of the cursor.
+     * Take `±n` ServerLinks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FtpLinks.
+     * Skip the first `n` ServerLinks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned FtpLinks
+     * Count returned ServerLinks
     **/
-    _count?: true | FtpLinkCountAggregateInputType
+    _count?: true | ServerLinkCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: FtpLinkMinAggregateInputType
+    _min?: ServerLinkMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: FtpLinkMaxAggregateInputType
+    _max?: ServerLinkMaxAggregateInputType
   }
 
-  export type GetFtpLinkAggregateType<T extends FtpLinkAggregateArgs> = {
-        [P in keyof T & keyof AggregateFtpLink]: P extends '_count' | 'count'
+  export type GetServerLinkAggregateType<T extends ServerLinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateServerLink]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateFtpLink[P]>
-      : GetScalarType<T[P], AggregateFtpLink[P]>
+        : GetScalarType<T[P], AggregateServerLink[P]>
+      : GetScalarType<T[P], AggregateServerLink[P]>
   }
 
 
 
 
-  export type FtpLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FtpLinkWhereInput
-    orderBy?: FtpLinkOrderByWithAggregationInput | FtpLinkOrderByWithAggregationInput[]
-    by: FtpLinkScalarFieldEnum[] | FtpLinkScalarFieldEnum
-    having?: FtpLinkScalarWhereWithAggregatesInput
+  export type ServerLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServerLinkWhereInput
+    orderBy?: ServerLinkOrderByWithAggregationInput | ServerLinkOrderByWithAggregationInput[]
+    by: ServerLinkScalarFieldEnum[] | ServerLinkScalarFieldEnum
+    having?: ServerLinkScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: FtpLinkCountAggregateInputType | true
-    _min?: FtpLinkMinAggregateInputType
-    _max?: FtpLinkMaxAggregateInputType
+    _count?: ServerLinkCountAggregateInputType | true
+    _min?: ServerLinkMinAggregateInputType
+    _max?: ServerLinkMaxAggregateInputType
   }
 
-  export type FtpLinkGroupByOutputType = {
+  export type ServerLinkGroupByOutputType = {
     id: string
+    type: $Enums.linkType
     name: string
     url: string
     description: string | null
     createdAt: Date
     workingIn: string[]
-    _count: FtpLinkCountAggregateOutputType | null
-    _min: FtpLinkMinAggregateOutputType | null
-    _max: FtpLinkMaxAggregateOutputType | null
+    _count: ServerLinkCountAggregateOutputType | null
+    _min: ServerLinkMinAggregateOutputType | null
+    _max: ServerLinkMaxAggregateOutputType | null
   }
 
-  type GetFtpLinkGroupByPayload<T extends FtpLinkGroupByArgs> = Prisma.PrismaPromise<
+  type GetServerLinkGroupByPayload<T extends ServerLinkGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<FtpLinkGroupByOutputType, T['by']> &
+      PickEnumerable<ServerLinkGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof FtpLinkGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ServerLinkGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], FtpLinkGroupByOutputType[P]>
-            : GetScalarType<T[P], FtpLinkGroupByOutputType[P]>
+              : GetScalarType<T[P], ServerLinkGroupByOutputType[P]>
+            : GetScalarType<T[P], ServerLinkGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type FtpLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServerLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    type?: boolean
     name?: boolean
     url?: boolean
     description?: boolean
     createdAt?: boolean
     workingIn?: boolean
-  }, ExtArgs["result"]["ftpLink"]>
+  }, ExtArgs["result"]["serverLink"]>
 
-  export type FtpLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServerLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    type?: boolean
     name?: boolean
     url?: boolean
     description?: boolean
     createdAt?: boolean
     workingIn?: boolean
-  }, ExtArgs["result"]["ftpLink"]>
+  }, ExtArgs["result"]["serverLink"]>
 
-  export type FtpLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ServerLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    type?: boolean
     name?: boolean
     url?: boolean
     description?: boolean
     createdAt?: boolean
     workingIn?: boolean
-  }, ExtArgs["result"]["ftpLink"]>
+  }, ExtArgs["result"]["serverLink"]>
 
-  export type FtpLinkSelectScalar = {
+  export type ServerLinkSelectScalar = {
     id?: boolean
+    type?: boolean
     name?: boolean
     url?: boolean
     description?: boolean
@@ -2281,148 +2218,149 @@ export namespace Prisma {
     workingIn?: boolean
   }
 
-  export type FtpLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "description" | "createdAt" | "workingIn", ExtArgs["result"]["ftpLink"]>
+  export type ServerLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "type" | "name" | "url" | "description" | "createdAt" | "workingIn", ExtArgs["result"]["serverLink"]>
 
-  export type $FtpLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "FtpLink"
+  export type $ServerLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServerLink"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      type: $Enums.linkType
       name: string
       url: string
       description: string | null
       createdAt: Date
       workingIn: string[]
-    }, ExtArgs["result"]["ftpLink"]>
+    }, ExtArgs["result"]["serverLink"]>
     composites: {}
   }
 
-  type FtpLinkGetPayload<S extends boolean | null | undefined | FtpLinkDefaultArgs> = $Result.GetResult<Prisma.$FtpLinkPayload, S>
+  type ServerLinkGetPayload<S extends boolean | null | undefined | ServerLinkDefaultArgs> = $Result.GetResult<Prisma.$ServerLinkPayload, S>
 
-  type FtpLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FtpLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FtpLinkCountAggregateInputType | true
+  type ServerLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServerLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServerLinkCountAggregateInputType | true
     }
 
-  export interface FtpLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FtpLink'], meta: { name: 'FtpLink' } }
+  export interface ServerLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServerLink'], meta: { name: 'ServerLink' } }
     /**
-     * Find zero or one FtpLink that matches the filter.
-     * @param {FtpLinkFindUniqueArgs} args - Arguments to find a FtpLink
+     * Find zero or one ServerLink that matches the filter.
+     * @param {ServerLinkFindUniqueArgs} args - Arguments to find a ServerLink
      * @example
-     * // Get one FtpLink
-     * const ftpLink = await prisma.ftpLink.findUnique({
+     * // Get one ServerLink
+     * const serverLink = await prisma.serverLink.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends FtpLinkFindUniqueArgs>(args: SelectSubset<T, FtpLinkFindUniqueArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ServerLinkFindUniqueArgs>(args: SelectSubset<T, ServerLinkFindUniqueArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one FtpLink that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ServerLink that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {FtpLinkFindUniqueOrThrowArgs} args - Arguments to find a FtpLink
+     * @param {ServerLinkFindUniqueOrThrowArgs} args - Arguments to find a ServerLink
      * @example
-     * // Get one FtpLink
-     * const ftpLink = await prisma.ftpLink.findUniqueOrThrow({
+     * // Get one ServerLink
+     * const serverLink = await prisma.serverLink.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FtpLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, FtpLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ServerLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, ServerLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FtpLink that matches the filter.
+     * Find the first ServerLink that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkFindFirstArgs} args - Arguments to find a FtpLink
+     * @param {ServerLinkFindFirstArgs} args - Arguments to find a ServerLink
      * @example
-     * // Get one FtpLink
-     * const ftpLink = await prisma.ftpLink.findFirst({
+     * // Get one ServerLink
+     * const serverLink = await prisma.serverLink.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends FtpLinkFindFirstArgs>(args?: SelectSubset<T, FtpLinkFindFirstArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ServerLinkFindFirstArgs>(args?: SelectSubset<T, ServerLinkFindFirstArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first FtpLink that matches the filter or
+     * Find the first ServerLink that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkFindFirstOrThrowArgs} args - Arguments to find a FtpLink
+     * @param {ServerLinkFindFirstOrThrowArgs} args - Arguments to find a ServerLink
      * @example
-     * // Get one FtpLink
-     * const ftpLink = await prisma.ftpLink.findFirstOrThrow({
+     * // Get one ServerLink
+     * const serverLink = await prisma.serverLink.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends FtpLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, FtpLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ServerLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, ServerLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more FtpLinks that matches the filter.
+     * Find zero or more ServerLinks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ServerLinkFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all FtpLinks
-     * const ftpLinks = await prisma.ftpLink.findMany()
+     * // Get all ServerLinks
+     * const serverLinks = await prisma.serverLink.findMany()
      * 
-     * // Get first 10 FtpLinks
-     * const ftpLinks = await prisma.ftpLink.findMany({ take: 10 })
+     * // Get first 10 ServerLinks
+     * const serverLinks = await prisma.serverLink.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const ftpLinkWithIdOnly = await prisma.ftpLink.findMany({ select: { id: true } })
+     * const serverLinkWithIdOnly = await prisma.serverLink.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends FtpLinkFindManyArgs>(args?: SelectSubset<T, FtpLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ServerLinkFindManyArgs>(args?: SelectSubset<T, ServerLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a FtpLink.
-     * @param {FtpLinkCreateArgs} args - Arguments to create a FtpLink.
+     * Create a ServerLink.
+     * @param {ServerLinkCreateArgs} args - Arguments to create a ServerLink.
      * @example
-     * // Create one FtpLink
-     * const FtpLink = await prisma.ftpLink.create({
+     * // Create one ServerLink
+     * const ServerLink = await prisma.serverLink.create({
      *   data: {
-     *     // ... data to create a FtpLink
+     *     // ... data to create a ServerLink
      *   }
      * })
      * 
      */
-    create<T extends FtpLinkCreateArgs>(args: SelectSubset<T, FtpLinkCreateArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ServerLinkCreateArgs>(args: SelectSubset<T, ServerLinkCreateArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many FtpLinks.
-     * @param {FtpLinkCreateManyArgs} args - Arguments to create many FtpLinks.
+     * Create many ServerLinks.
+     * @param {ServerLinkCreateManyArgs} args - Arguments to create many ServerLinks.
      * @example
-     * // Create many FtpLinks
-     * const ftpLink = await prisma.ftpLink.createMany({
+     * // Create many ServerLinks
+     * const serverLink = await prisma.serverLink.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends FtpLinkCreateManyArgs>(args?: SelectSubset<T, FtpLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ServerLinkCreateManyArgs>(args?: SelectSubset<T, ServerLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many FtpLinks and returns the data saved in the database.
-     * @param {FtpLinkCreateManyAndReturnArgs} args - Arguments to create many FtpLinks.
+     * Create many ServerLinks and returns the data saved in the database.
+     * @param {ServerLinkCreateManyAndReturnArgs} args - Arguments to create many ServerLinks.
      * @example
-     * // Create many FtpLinks
-     * const ftpLink = await prisma.ftpLink.createManyAndReturn({
+     * // Create many ServerLinks
+     * const serverLink = await prisma.serverLink.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many FtpLinks and only return the `id`
-     * const ftpLinkWithIdOnly = await prisma.ftpLink.createManyAndReturn({
+     * // Create many ServerLinks and only return the `id`
+     * const serverLinkWithIdOnly = await prisma.serverLink.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2432,28 +2370,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends FtpLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, FtpLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ServerLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, ServerLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a FtpLink.
-     * @param {FtpLinkDeleteArgs} args - Arguments to delete one FtpLink.
+     * Delete a ServerLink.
+     * @param {ServerLinkDeleteArgs} args - Arguments to delete one ServerLink.
      * @example
-     * // Delete one FtpLink
-     * const FtpLink = await prisma.ftpLink.delete({
+     * // Delete one ServerLink
+     * const ServerLink = await prisma.serverLink.delete({
      *   where: {
-     *     // ... filter to delete one FtpLink
+     *     // ... filter to delete one ServerLink
      *   }
      * })
      * 
      */
-    delete<T extends FtpLinkDeleteArgs>(args: SelectSubset<T, FtpLinkDeleteArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ServerLinkDeleteArgs>(args: SelectSubset<T, ServerLinkDeleteArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one FtpLink.
-     * @param {FtpLinkUpdateArgs} args - Arguments to update one FtpLink.
+     * Update one ServerLink.
+     * @param {ServerLinkUpdateArgs} args - Arguments to update one ServerLink.
      * @example
-     * // Update one FtpLink
-     * const ftpLink = await prisma.ftpLink.update({
+     * // Update one ServerLink
+     * const serverLink = await prisma.serverLink.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2463,30 +2401,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends FtpLinkUpdateArgs>(args: SelectSubset<T, FtpLinkUpdateArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ServerLinkUpdateArgs>(args: SelectSubset<T, ServerLinkUpdateArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more FtpLinks.
-     * @param {FtpLinkDeleteManyArgs} args - Arguments to filter FtpLinks to delete.
+     * Delete zero or more ServerLinks.
+     * @param {ServerLinkDeleteManyArgs} args - Arguments to filter ServerLinks to delete.
      * @example
-     * // Delete a few FtpLinks
-     * const { count } = await prisma.ftpLink.deleteMany({
+     * // Delete a few ServerLinks
+     * const { count } = await prisma.serverLink.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends FtpLinkDeleteManyArgs>(args?: SelectSubset<T, FtpLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ServerLinkDeleteManyArgs>(args?: SelectSubset<T, ServerLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FtpLinks.
+     * Update zero or more ServerLinks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ServerLinkUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many FtpLinks
-     * const ftpLink = await prisma.ftpLink.updateMany({
+     * // Update many ServerLinks
+     * const serverLink = await prisma.serverLink.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2496,14 +2434,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends FtpLinkUpdateManyArgs>(args: SelectSubset<T, FtpLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ServerLinkUpdateManyArgs>(args: SelectSubset<T, ServerLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more FtpLinks and returns the data updated in the database.
-     * @param {FtpLinkUpdateManyAndReturnArgs} args - Arguments to update many FtpLinks.
+     * Update zero or more ServerLinks and returns the data updated in the database.
+     * @param {ServerLinkUpdateManyAndReturnArgs} args - Arguments to update many ServerLinks.
      * @example
-     * // Update many FtpLinks
-     * const ftpLink = await prisma.ftpLink.updateManyAndReturn({
+     * // Update many ServerLinks
+     * const serverLink = await prisma.serverLink.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2512,8 +2450,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more FtpLinks and only return the `id`
-     * const ftpLinkWithIdOnly = await prisma.ftpLink.updateManyAndReturn({
+     * // Update zero or more ServerLinks and only return the `id`
+     * const serverLinkWithIdOnly = await prisma.serverLink.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -2526,56 +2464,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends FtpLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, FtpLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ServerLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, ServerLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one FtpLink.
-     * @param {FtpLinkUpsertArgs} args - Arguments to update or create a FtpLink.
+     * Create or update one ServerLink.
+     * @param {ServerLinkUpsertArgs} args - Arguments to update or create a ServerLink.
      * @example
-     * // Update or create a FtpLink
-     * const ftpLink = await prisma.ftpLink.upsert({
+     * // Update or create a ServerLink
+     * const serverLink = await prisma.serverLink.upsert({
      *   create: {
-     *     // ... data to create a FtpLink
+     *     // ... data to create a ServerLink
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the FtpLink we want to update
+     *     // ... the filter for the ServerLink we want to update
      *   }
      * })
      */
-    upsert<T extends FtpLinkUpsertArgs>(args: SelectSubset<T, FtpLinkUpsertArgs<ExtArgs>>): Prisma__FtpLinkClient<$Result.GetResult<Prisma.$FtpLinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ServerLinkUpsertArgs>(args: SelectSubset<T, ServerLinkUpsertArgs<ExtArgs>>): Prisma__ServerLinkClient<$Result.GetResult<Prisma.$ServerLinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of FtpLinks.
+     * Count the number of ServerLinks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkCountArgs} args - Arguments to filter FtpLinks to count.
+     * @param {ServerLinkCountArgs} args - Arguments to filter ServerLinks to count.
      * @example
-     * // Count the number of FtpLinks
-     * const count = await prisma.ftpLink.count({
+     * // Count the number of ServerLinks
+     * const count = await prisma.serverLink.count({
      *   where: {
-     *     // ... the filter for the FtpLinks we want to count
+     *     // ... the filter for the ServerLinks we want to count
      *   }
      * })
     **/
-    count<T extends FtpLinkCountArgs>(
-      args?: Subset<T, FtpLinkCountArgs>,
+    count<T extends ServerLinkCountArgs>(
+      args?: Subset<T, ServerLinkCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], FtpLinkCountAggregateOutputType>
+          : GetScalarType<T['select'], ServerLinkCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a FtpLink.
+     * Allows you to perform aggregations operations on a ServerLink.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ServerLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2595,13 +2533,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends FtpLinkAggregateArgs>(args: Subset<T, FtpLinkAggregateArgs>): Prisma.PrismaPromise<GetFtpLinkAggregateType<T>>
+    aggregate<T extends ServerLinkAggregateArgs>(args: Subset<T, ServerLinkAggregateArgs>): Prisma.PrismaPromise<GetServerLinkAggregateType<T>>
 
     /**
-     * Group by FtpLink.
+     * Group by ServerLink.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {FtpLinkGroupByArgs} args - Group by arguments.
+     * @param {ServerLinkGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2616,14 +2554,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends FtpLinkGroupByArgs,
+      T extends ServerLinkGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: FtpLinkGroupByArgs['orderBy'] }
-        : { orderBy?: FtpLinkGroupByArgs['orderBy'] },
+        ? { orderBy: ServerLinkGroupByArgs['orderBy'] }
+        : { orderBy?: ServerLinkGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2672,20 +2610,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, FtpLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFtpLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ServerLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServerLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the FtpLink model
+   * Fields of the ServerLink model
    */
-  readonly fields: FtpLinkFieldRefs;
+  readonly fields: ServerLinkFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for FtpLink.
+   * The delegate class that acts as a "Promise-like" for ServerLink.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FtpLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ServerLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2713,1382 +2651,379 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the FtpLink model
+   * Fields of the ServerLink model
    */
-  interface FtpLinkFieldRefs {
-    readonly id: FieldRef<"FtpLink", 'String'>
-    readonly name: FieldRef<"FtpLink", 'String'>
-    readonly url: FieldRef<"FtpLink", 'String'>
-    readonly description: FieldRef<"FtpLink", 'String'>
-    readonly createdAt: FieldRef<"FtpLink", 'DateTime'>
-    readonly workingIn: FieldRef<"FtpLink", 'String[]'>
+  interface ServerLinkFieldRefs {
+    readonly id: FieldRef<"ServerLink", 'String'>
+    readonly type: FieldRef<"ServerLink", 'linkType'>
+    readonly name: FieldRef<"ServerLink", 'String'>
+    readonly url: FieldRef<"ServerLink", 'String'>
+    readonly description: FieldRef<"ServerLink", 'String'>
+    readonly createdAt: FieldRef<"ServerLink", 'DateTime'>
+    readonly workingIn: FieldRef<"ServerLink", 'String[]'>
   }
     
 
   // Custom InputTypes
   /**
-   * FtpLink findUnique
+   * ServerLink findUnique
    */
-  export type FtpLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter, which FtpLink to fetch.
+     * Filter, which ServerLink to fetch.
      */
-    where: FtpLinkWhereUniqueInput
+    where: ServerLinkWhereUniqueInput
   }
 
   /**
-   * FtpLink findUniqueOrThrow
+   * ServerLink findUniqueOrThrow
    */
-  export type FtpLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter, which FtpLink to fetch.
+     * Filter, which ServerLink to fetch.
      */
-    where: FtpLinkWhereUniqueInput
+    where: ServerLinkWhereUniqueInput
   }
 
   /**
-   * FtpLink findFirst
+   * ServerLink findFirst
    */
-  export type FtpLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter, which FtpLink to fetch.
+     * Filter, which ServerLink to fetch.
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FtpLinks to fetch.
+     * Determine the order of ServerLinks to fetch.
      */
-    orderBy?: FtpLinkOrderByWithRelationInput | FtpLinkOrderByWithRelationInput[]
+    orderBy?: ServerLinkOrderByWithRelationInput | ServerLinkOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FtpLinks.
+     * Sets the position for searching for ServerLinks.
      */
-    cursor?: FtpLinkWhereUniqueInput
+    cursor?: ServerLinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FtpLinks from the position of the cursor.
+     * Take `±n` ServerLinks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FtpLinks.
+     * Skip the first `n` ServerLinks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FtpLinks.
+     * Filter by unique combinations of ServerLinks.
      */
-    distinct?: FtpLinkScalarFieldEnum | FtpLinkScalarFieldEnum[]
+    distinct?: ServerLinkScalarFieldEnum | ServerLinkScalarFieldEnum[]
   }
 
   /**
-   * FtpLink findFirstOrThrow
+   * ServerLink findFirstOrThrow
    */
-  export type FtpLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter, which FtpLink to fetch.
+     * Filter, which ServerLink to fetch.
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FtpLinks to fetch.
+     * Determine the order of ServerLinks to fetch.
      */
-    orderBy?: FtpLinkOrderByWithRelationInput | FtpLinkOrderByWithRelationInput[]
+    orderBy?: ServerLinkOrderByWithRelationInput | ServerLinkOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for FtpLinks.
+     * Sets the position for searching for ServerLinks.
      */
-    cursor?: FtpLinkWhereUniqueInput
+    cursor?: ServerLinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FtpLinks from the position of the cursor.
+     * Take `±n` ServerLinks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FtpLinks.
+     * Skip the first `n` ServerLinks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of FtpLinks.
+     * Filter by unique combinations of ServerLinks.
      */
-    distinct?: FtpLinkScalarFieldEnum | FtpLinkScalarFieldEnum[]
+    distinct?: ServerLinkScalarFieldEnum | ServerLinkScalarFieldEnum[]
   }
 
   /**
-   * FtpLink findMany
+   * ServerLink findMany
    */
-  export type FtpLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter, which FtpLinks to fetch.
+     * Filter, which ServerLinks to fetch.
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of FtpLinks to fetch.
+     * Determine the order of ServerLinks to fetch.
      */
-    orderBy?: FtpLinkOrderByWithRelationInput | FtpLinkOrderByWithRelationInput[]
+    orderBy?: ServerLinkOrderByWithRelationInput | ServerLinkOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing FtpLinks.
+     * Sets the position for listing ServerLinks.
      */
-    cursor?: FtpLinkWhereUniqueInput
+    cursor?: ServerLinkWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` FtpLinks from the position of the cursor.
+     * Take `±n` ServerLinks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` FtpLinks.
+     * Skip the first `n` ServerLinks.
      */
     skip?: number
-    distinct?: FtpLinkScalarFieldEnum | FtpLinkScalarFieldEnum[]
+    distinct?: ServerLinkScalarFieldEnum | ServerLinkScalarFieldEnum[]
   }
 
   /**
-   * FtpLink create
+   * ServerLink create
    */
-  export type FtpLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * The data needed to create a FtpLink.
+     * The data needed to create a ServerLink.
      */
-    data: XOR<FtpLinkCreateInput, FtpLinkUncheckedCreateInput>
+    data: XOR<ServerLinkCreateInput, ServerLinkUncheckedCreateInput>
   }
 
   /**
-   * FtpLink createMany
+   * ServerLink createMany
    */
-  export type FtpLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many FtpLinks.
+     * The data used to create many ServerLinks.
      */
-    data: FtpLinkCreateManyInput | FtpLinkCreateManyInput[]
+    data: ServerLinkCreateManyInput | ServerLinkCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * FtpLink createManyAndReturn
+   * ServerLink createManyAndReturn
    */
-  export type FtpLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ServerLinkSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * The data used to create many FtpLinks.
+     * The data used to create many ServerLinks.
      */
-    data: FtpLinkCreateManyInput | FtpLinkCreateManyInput[]
+    data: ServerLinkCreateManyInput | ServerLinkCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * FtpLink update
+   * ServerLink update
    */
-  export type FtpLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * The data needed to update a FtpLink.
+     * The data needed to update a ServerLink.
      */
-    data: XOR<FtpLinkUpdateInput, FtpLinkUncheckedUpdateInput>
+    data: XOR<ServerLinkUpdateInput, ServerLinkUncheckedUpdateInput>
     /**
-     * Choose, which FtpLink to update.
+     * Choose, which ServerLink to update.
      */
-    where: FtpLinkWhereUniqueInput
+    where: ServerLinkWhereUniqueInput
   }
 
   /**
-   * FtpLink updateMany
+   * ServerLink updateMany
    */
-  export type FtpLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update FtpLinks.
+     * The data used to update ServerLinks.
      */
-    data: XOR<FtpLinkUpdateManyMutationInput, FtpLinkUncheckedUpdateManyInput>
+    data: XOR<ServerLinkUpdateManyMutationInput, ServerLinkUncheckedUpdateManyInput>
     /**
-     * Filter which FtpLinks to update
+     * Filter which ServerLinks to update
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
-     * Limit how many FtpLinks to update.
+     * Limit how many ServerLinks to update.
      */
     limit?: number
   }
 
   /**
-   * FtpLink updateManyAndReturn
+   * ServerLink updateManyAndReturn
    */
-  export type FtpLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ServerLinkSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * The data used to update FtpLinks.
+     * The data used to update ServerLinks.
      */
-    data: XOR<FtpLinkUpdateManyMutationInput, FtpLinkUncheckedUpdateManyInput>
+    data: XOR<ServerLinkUpdateManyMutationInput, ServerLinkUncheckedUpdateManyInput>
     /**
-     * Filter which FtpLinks to update
+     * Filter which ServerLinks to update
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
-     * Limit how many FtpLinks to update.
+     * Limit how many ServerLinks to update.
      */
     limit?: number
   }
 
   /**
-   * FtpLink upsert
+   * ServerLink upsert
    */
-  export type FtpLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * The filter to search for the FtpLink to update in case it exists.
+     * The filter to search for the ServerLink to update in case it exists.
      */
-    where: FtpLinkWhereUniqueInput
+    where: ServerLinkWhereUniqueInput
     /**
-     * In case the FtpLink found by the `where` argument doesn't exist, create a new FtpLink with this data.
+     * In case the ServerLink found by the `where` argument doesn't exist, create a new ServerLink with this data.
      */
-    create: XOR<FtpLinkCreateInput, FtpLinkUncheckedCreateInput>
+    create: XOR<ServerLinkCreateInput, ServerLinkUncheckedCreateInput>
     /**
-     * In case the FtpLink was found with the provided `where` argument, update it with this data.
+     * In case the ServerLink was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<FtpLinkUpdateInput, FtpLinkUncheckedUpdateInput>
+    update: XOR<ServerLinkUpdateInput, ServerLinkUncheckedUpdateInput>
   }
 
   /**
-   * FtpLink delete
+   * ServerLink delete
    */
-  export type FtpLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
     /**
-     * Filter which FtpLink to delete.
+     * Filter which ServerLink to delete.
      */
-    where: FtpLinkWhereUniqueInput
+    where: ServerLinkWhereUniqueInput
   }
 
   /**
-   * FtpLink deleteMany
+   * ServerLink deleteMany
    */
-  export type FtpLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which FtpLinks to delete
+     * Filter which ServerLinks to delete
      */
-    where?: FtpLinkWhereInput
+    where?: ServerLinkWhereInput
     /**
-     * Limit how many FtpLinks to delete.
+     * Limit how many ServerLinks to delete.
      */
     limit?: number
   }
 
   /**
-   * FtpLink without action
+   * ServerLink without action
    */
-  export type FtpLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ServerLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the FtpLink
+     * Select specific fields to fetch from the ServerLink
      */
-    select?: FtpLinkSelect<ExtArgs> | null
+    select?: ServerLinkSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the FtpLink
+     * Omit specific fields from the ServerLink
      */
-    omit?: FtpLinkOmit<ExtArgs> | null
-  }
-
-
-  /**
-   * Model IpTvLink
-   */
-
-  export type AggregateIpTvLink = {
-    _count: IpTvLinkCountAggregateOutputType | null
-    _min: IpTvLinkMinAggregateOutputType | null
-    _max: IpTvLinkMaxAggregateOutputType | null
-  }
-
-  export type IpTvLinkMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    url: string | null
-    description: string | null
-    createdAt: Date | null
-  }
-
-  export type IpTvLinkMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    url: string | null
-    description: string | null
-    createdAt: Date | null
-  }
-
-  export type IpTvLinkCountAggregateOutputType = {
-    id: number
-    name: number
-    url: number
-    description: number
-    createdAt: number
-    workingIn: number
-    _all: number
-  }
-
-
-  export type IpTvLinkMinAggregateInputType = {
-    id?: true
-    name?: true
-    url?: true
-    description?: true
-    createdAt?: true
-  }
-
-  export type IpTvLinkMaxAggregateInputType = {
-    id?: true
-    name?: true
-    url?: true
-    description?: true
-    createdAt?: true
-  }
-
-  export type IpTvLinkCountAggregateInputType = {
-    id?: true
-    name?: true
-    url?: true
-    description?: true
-    createdAt?: true
-    workingIn?: true
-    _all?: true
-  }
-
-  export type IpTvLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which IpTvLink to aggregate.
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of IpTvLinks to fetch.
-     */
-    orderBy?: IpTvLinkOrderByWithRelationInput | IpTvLinkOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: IpTvLinkWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` IpTvLinks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` IpTvLinks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned IpTvLinks
-    **/
-    _count?: true | IpTvLinkCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: IpTvLinkMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: IpTvLinkMaxAggregateInputType
-  }
-
-  export type GetIpTvLinkAggregateType<T extends IpTvLinkAggregateArgs> = {
-        [P in keyof T & keyof AggregateIpTvLink]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateIpTvLink[P]>
-      : GetScalarType<T[P], AggregateIpTvLink[P]>
-  }
-
-
-
-
-  export type IpTvLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: IpTvLinkWhereInput
-    orderBy?: IpTvLinkOrderByWithAggregationInput | IpTvLinkOrderByWithAggregationInput[]
-    by: IpTvLinkScalarFieldEnum[] | IpTvLinkScalarFieldEnum
-    having?: IpTvLinkScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: IpTvLinkCountAggregateInputType | true
-    _min?: IpTvLinkMinAggregateInputType
-    _max?: IpTvLinkMaxAggregateInputType
-  }
-
-  export type IpTvLinkGroupByOutputType = {
-    id: string
-    name: string
-    url: string
-    description: string | null
-    createdAt: Date
-    workingIn: string[]
-    _count: IpTvLinkCountAggregateOutputType | null
-    _min: IpTvLinkMinAggregateOutputType | null
-    _max: IpTvLinkMaxAggregateOutputType | null
-  }
-
-  type GetIpTvLinkGroupByPayload<T extends IpTvLinkGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<IpTvLinkGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof IpTvLinkGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], IpTvLinkGroupByOutputType[P]>
-            : GetScalarType<T[P], IpTvLinkGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type IpTvLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    url?: boolean
-    description?: boolean
-    createdAt?: boolean
-    workingIn?: boolean
-  }, ExtArgs["result"]["ipTvLink"]>
-
-  export type IpTvLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    url?: boolean
-    description?: boolean
-    createdAt?: boolean
-    workingIn?: boolean
-  }, ExtArgs["result"]["ipTvLink"]>
-
-  export type IpTvLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    url?: boolean
-    description?: boolean
-    createdAt?: boolean
-    workingIn?: boolean
-  }, ExtArgs["result"]["ipTvLink"]>
-
-  export type IpTvLinkSelectScalar = {
-    id?: boolean
-    name?: boolean
-    url?: boolean
-    description?: boolean
-    createdAt?: boolean
-    workingIn?: boolean
-  }
-
-  export type IpTvLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "description" | "createdAt" | "workingIn", ExtArgs["result"]["ipTvLink"]>
-
-  export type $IpTvLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "IpTvLink"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      url: string
-      description: string | null
-      createdAt: Date
-      workingIn: string[]
-    }, ExtArgs["result"]["ipTvLink"]>
-    composites: {}
-  }
-
-  type IpTvLinkGetPayload<S extends boolean | null | undefined | IpTvLinkDefaultArgs> = $Result.GetResult<Prisma.$IpTvLinkPayload, S>
-
-  type IpTvLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<IpTvLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: IpTvLinkCountAggregateInputType | true
-    }
-
-  export interface IpTvLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['IpTvLink'], meta: { name: 'IpTvLink' } }
-    /**
-     * Find zero or one IpTvLink that matches the filter.
-     * @param {IpTvLinkFindUniqueArgs} args - Arguments to find a IpTvLink
-     * @example
-     * // Get one IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends IpTvLinkFindUniqueArgs>(args: SelectSubset<T, IpTvLinkFindUniqueArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one IpTvLink that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {IpTvLinkFindUniqueOrThrowArgs} args - Arguments to find a IpTvLink
-     * @example
-     * // Get one IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends IpTvLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, IpTvLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first IpTvLink that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkFindFirstArgs} args - Arguments to find a IpTvLink
-     * @example
-     * // Get one IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends IpTvLinkFindFirstArgs>(args?: SelectSubset<T, IpTvLinkFindFirstArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first IpTvLink that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkFindFirstOrThrowArgs} args - Arguments to find a IpTvLink
-     * @example
-     * // Get one IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends IpTvLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, IpTvLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more IpTvLinks that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all IpTvLinks
-     * const ipTvLinks = await prisma.ipTvLink.findMany()
-     * 
-     * // Get first 10 IpTvLinks
-     * const ipTvLinks = await prisma.ipTvLink.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const ipTvLinkWithIdOnly = await prisma.ipTvLink.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends IpTvLinkFindManyArgs>(args?: SelectSubset<T, IpTvLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a IpTvLink.
-     * @param {IpTvLinkCreateArgs} args - Arguments to create a IpTvLink.
-     * @example
-     * // Create one IpTvLink
-     * const IpTvLink = await prisma.ipTvLink.create({
-     *   data: {
-     *     // ... data to create a IpTvLink
-     *   }
-     * })
-     * 
-     */
-    create<T extends IpTvLinkCreateArgs>(args: SelectSubset<T, IpTvLinkCreateArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many IpTvLinks.
-     * @param {IpTvLinkCreateManyArgs} args - Arguments to create many IpTvLinks.
-     * @example
-     * // Create many IpTvLinks
-     * const ipTvLink = await prisma.ipTvLink.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends IpTvLinkCreateManyArgs>(args?: SelectSubset<T, IpTvLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many IpTvLinks and returns the data saved in the database.
-     * @param {IpTvLinkCreateManyAndReturnArgs} args - Arguments to create many IpTvLinks.
-     * @example
-     * // Create many IpTvLinks
-     * const ipTvLink = await prisma.ipTvLink.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many IpTvLinks and only return the `id`
-     * const ipTvLinkWithIdOnly = await prisma.ipTvLink.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends IpTvLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, IpTvLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a IpTvLink.
-     * @param {IpTvLinkDeleteArgs} args - Arguments to delete one IpTvLink.
-     * @example
-     * // Delete one IpTvLink
-     * const IpTvLink = await prisma.ipTvLink.delete({
-     *   where: {
-     *     // ... filter to delete one IpTvLink
-     *   }
-     * })
-     * 
-     */
-    delete<T extends IpTvLinkDeleteArgs>(args: SelectSubset<T, IpTvLinkDeleteArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one IpTvLink.
-     * @param {IpTvLinkUpdateArgs} args - Arguments to update one IpTvLink.
-     * @example
-     * // Update one IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends IpTvLinkUpdateArgs>(args: SelectSubset<T, IpTvLinkUpdateArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more IpTvLinks.
-     * @param {IpTvLinkDeleteManyArgs} args - Arguments to filter IpTvLinks to delete.
-     * @example
-     * // Delete a few IpTvLinks
-     * const { count } = await prisma.ipTvLink.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends IpTvLinkDeleteManyArgs>(args?: SelectSubset<T, IpTvLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more IpTvLinks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many IpTvLinks
-     * const ipTvLink = await prisma.ipTvLink.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends IpTvLinkUpdateManyArgs>(args: SelectSubset<T, IpTvLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more IpTvLinks and returns the data updated in the database.
-     * @param {IpTvLinkUpdateManyAndReturnArgs} args - Arguments to update many IpTvLinks.
-     * @example
-     * // Update many IpTvLinks
-     * const ipTvLink = await prisma.ipTvLink.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more IpTvLinks and only return the `id`
-     * const ipTvLinkWithIdOnly = await prisma.ipTvLink.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends IpTvLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, IpTvLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one IpTvLink.
-     * @param {IpTvLinkUpsertArgs} args - Arguments to update or create a IpTvLink.
-     * @example
-     * // Update or create a IpTvLink
-     * const ipTvLink = await prisma.ipTvLink.upsert({
-     *   create: {
-     *     // ... data to create a IpTvLink
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the IpTvLink we want to update
-     *   }
-     * })
-     */
-    upsert<T extends IpTvLinkUpsertArgs>(args: SelectSubset<T, IpTvLinkUpsertArgs<ExtArgs>>): Prisma__IpTvLinkClient<$Result.GetResult<Prisma.$IpTvLinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of IpTvLinks.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkCountArgs} args - Arguments to filter IpTvLinks to count.
-     * @example
-     * // Count the number of IpTvLinks
-     * const count = await prisma.ipTvLink.count({
-     *   where: {
-     *     // ... the filter for the IpTvLinks we want to count
-     *   }
-     * })
-    **/
-    count<T extends IpTvLinkCountArgs>(
-      args?: Subset<T, IpTvLinkCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], IpTvLinkCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a IpTvLink.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends IpTvLinkAggregateArgs>(args: Subset<T, IpTvLinkAggregateArgs>): Prisma.PrismaPromise<GetIpTvLinkAggregateType<T>>
-
-    /**
-     * Group by IpTvLink.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {IpTvLinkGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends IpTvLinkGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: IpTvLinkGroupByArgs['orderBy'] }
-        : { orderBy?: IpTvLinkGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, IpTvLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetIpTvLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the IpTvLink model
-   */
-  readonly fields: IpTvLinkFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for IpTvLink.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__IpTvLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the IpTvLink model
-   */
-  interface IpTvLinkFieldRefs {
-    readonly id: FieldRef<"IpTvLink", 'String'>
-    readonly name: FieldRef<"IpTvLink", 'String'>
-    readonly url: FieldRef<"IpTvLink", 'String'>
-    readonly description: FieldRef<"IpTvLink", 'String'>
-    readonly createdAt: FieldRef<"IpTvLink", 'DateTime'>
-    readonly workingIn: FieldRef<"IpTvLink", 'String[]'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * IpTvLink findUnique
-   */
-  export type IpTvLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter, which IpTvLink to fetch.
-     */
-    where: IpTvLinkWhereUniqueInput
-  }
-
-  /**
-   * IpTvLink findUniqueOrThrow
-   */
-  export type IpTvLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter, which IpTvLink to fetch.
-     */
-    where: IpTvLinkWhereUniqueInput
-  }
-
-  /**
-   * IpTvLink findFirst
-   */
-  export type IpTvLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter, which IpTvLink to fetch.
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of IpTvLinks to fetch.
-     */
-    orderBy?: IpTvLinkOrderByWithRelationInput | IpTvLinkOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for IpTvLinks.
-     */
-    cursor?: IpTvLinkWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` IpTvLinks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` IpTvLinks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of IpTvLinks.
-     */
-    distinct?: IpTvLinkScalarFieldEnum | IpTvLinkScalarFieldEnum[]
-  }
-
-  /**
-   * IpTvLink findFirstOrThrow
-   */
-  export type IpTvLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter, which IpTvLink to fetch.
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of IpTvLinks to fetch.
-     */
-    orderBy?: IpTvLinkOrderByWithRelationInput | IpTvLinkOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for IpTvLinks.
-     */
-    cursor?: IpTvLinkWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` IpTvLinks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` IpTvLinks.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of IpTvLinks.
-     */
-    distinct?: IpTvLinkScalarFieldEnum | IpTvLinkScalarFieldEnum[]
-  }
-
-  /**
-   * IpTvLink findMany
-   */
-  export type IpTvLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter, which IpTvLinks to fetch.
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of IpTvLinks to fetch.
-     */
-    orderBy?: IpTvLinkOrderByWithRelationInput | IpTvLinkOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing IpTvLinks.
-     */
-    cursor?: IpTvLinkWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` IpTvLinks from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` IpTvLinks.
-     */
-    skip?: number
-    distinct?: IpTvLinkScalarFieldEnum | IpTvLinkScalarFieldEnum[]
-  }
-
-  /**
-   * IpTvLink create
-   */
-  export type IpTvLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * The data needed to create a IpTvLink.
-     */
-    data: XOR<IpTvLinkCreateInput, IpTvLinkUncheckedCreateInput>
-  }
-
-  /**
-   * IpTvLink createMany
-   */
-  export type IpTvLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many IpTvLinks.
-     */
-    data: IpTvLinkCreateManyInput | IpTvLinkCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * IpTvLink createManyAndReturn
-   */
-  export type IpTvLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * The data used to create many IpTvLinks.
-     */
-    data: IpTvLinkCreateManyInput | IpTvLinkCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * IpTvLink update
-   */
-  export type IpTvLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * The data needed to update a IpTvLink.
-     */
-    data: XOR<IpTvLinkUpdateInput, IpTvLinkUncheckedUpdateInput>
-    /**
-     * Choose, which IpTvLink to update.
-     */
-    where: IpTvLinkWhereUniqueInput
-  }
-
-  /**
-   * IpTvLink updateMany
-   */
-  export type IpTvLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update IpTvLinks.
-     */
-    data: XOR<IpTvLinkUpdateManyMutationInput, IpTvLinkUncheckedUpdateManyInput>
-    /**
-     * Filter which IpTvLinks to update
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * Limit how many IpTvLinks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * IpTvLink updateManyAndReturn
-   */
-  export type IpTvLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * The data used to update IpTvLinks.
-     */
-    data: XOR<IpTvLinkUpdateManyMutationInput, IpTvLinkUncheckedUpdateManyInput>
-    /**
-     * Filter which IpTvLinks to update
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * Limit how many IpTvLinks to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * IpTvLink upsert
-   */
-  export type IpTvLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * The filter to search for the IpTvLink to update in case it exists.
-     */
-    where: IpTvLinkWhereUniqueInput
-    /**
-     * In case the IpTvLink found by the `where` argument doesn't exist, create a new IpTvLink with this data.
-     */
-    create: XOR<IpTvLinkCreateInput, IpTvLinkUncheckedCreateInput>
-    /**
-     * In case the IpTvLink was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<IpTvLinkUpdateInput, IpTvLinkUncheckedUpdateInput>
-  }
-
-  /**
-   * IpTvLink delete
-   */
-  export type IpTvLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
-    /**
-     * Filter which IpTvLink to delete.
-     */
-    where: IpTvLinkWhereUniqueInput
-  }
-
-  /**
-   * IpTvLink deleteMany
-   */
-  export type IpTvLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which IpTvLinks to delete
-     */
-    where?: IpTvLinkWhereInput
-    /**
-     * Limit how many IpTvLinks to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * IpTvLink without action
-   */
-  export type IpTvLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the IpTvLink
-     */
-    select?: IpTvLinkSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the IpTvLink
-     */
-    omit?: IpTvLinkOmit<ExtArgs> | null
+    omit?: ServerLinkOmit<ExtArgs> | null
   }
 
 
@@ -4118,8 +3053,9 @@ export namespace Prisma {
   export type SpeedTestScalarFieldEnum = (typeof SpeedTestScalarFieldEnum)[keyof typeof SpeedTestScalarFieldEnum]
 
 
-  export const FtpLinkScalarFieldEnum: {
+  export const ServerLinkScalarFieldEnum: {
     id: 'id',
+    type: 'type',
     name: 'name',
     url: 'url',
     description: 'description',
@@ -4127,19 +3063,7 @@ export namespace Prisma {
     workingIn: 'workingIn'
   };
 
-  export type FtpLinkScalarFieldEnum = (typeof FtpLinkScalarFieldEnum)[keyof typeof FtpLinkScalarFieldEnum]
-
-
-  export const IpTvLinkScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    url: 'url',
-    description: 'description',
-    createdAt: 'createdAt',
-    workingIn: 'workingIn'
-  };
-
-  export type IpTvLinkScalarFieldEnum = (typeof IpTvLinkScalarFieldEnum)[keyof typeof IpTvLinkScalarFieldEnum]
+  export type ServerLinkScalarFieldEnum = (typeof ServerLinkScalarFieldEnum)[keyof typeof ServerLinkScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4210,6 +3134,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'linkType'
+   */
+  export type EnumlinkTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'linkType'>
+    
+
+
+  /**
+   * Reference to a field of type 'linkType[]'
+   */
+  export type ListEnumlinkTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'linkType[]'>
     
 
 
@@ -4289,20 +3227,22 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"SpeedTest"> | Date | string
   }
 
-  export type FtpLinkWhereInput = {
-    AND?: FtpLinkWhereInput | FtpLinkWhereInput[]
-    OR?: FtpLinkWhereInput[]
-    NOT?: FtpLinkWhereInput | FtpLinkWhereInput[]
-    id?: StringFilter<"FtpLink"> | string
-    name?: StringFilter<"FtpLink"> | string
-    url?: StringFilter<"FtpLink"> | string
-    description?: StringNullableFilter<"FtpLink"> | string | null
-    createdAt?: DateTimeFilter<"FtpLink"> | Date | string
-    workingIn?: StringNullableListFilter<"FtpLink">
+  export type ServerLinkWhereInput = {
+    AND?: ServerLinkWhereInput | ServerLinkWhereInput[]
+    OR?: ServerLinkWhereInput[]
+    NOT?: ServerLinkWhereInput | ServerLinkWhereInput[]
+    id?: StringFilter<"ServerLink"> | string
+    type?: EnumlinkTypeFilter<"ServerLink"> | $Enums.linkType
+    name?: StringFilter<"ServerLink"> | string
+    url?: StringFilter<"ServerLink"> | string
+    description?: StringNullableFilter<"ServerLink"> | string | null
+    createdAt?: DateTimeFilter<"ServerLink"> | Date | string
+    workingIn?: StringNullableListFilter<"ServerLink">
   }
 
-  export type FtpLinkOrderByWithRelationInput = {
+  export type ServerLinkOrderByWithRelationInput = {
     id?: SortOrder
+    type?: SortOrder
     name?: SortOrder
     url?: SortOrder
     description?: SortOrderInput | SortOrder
@@ -4310,97 +3250,43 @@ export namespace Prisma {
     workingIn?: SortOrder
   }
 
-  export type FtpLinkWhereUniqueInput = Prisma.AtLeast<{
+  export type ServerLinkWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     url?: string
-    AND?: FtpLinkWhereInput | FtpLinkWhereInput[]
-    OR?: FtpLinkWhereInput[]
-    NOT?: FtpLinkWhereInput | FtpLinkWhereInput[]
-    name?: StringFilter<"FtpLink"> | string
-    description?: StringNullableFilter<"FtpLink"> | string | null
-    createdAt?: DateTimeFilter<"FtpLink"> | Date | string
-    workingIn?: StringNullableListFilter<"FtpLink">
+    AND?: ServerLinkWhereInput | ServerLinkWhereInput[]
+    OR?: ServerLinkWhereInput[]
+    NOT?: ServerLinkWhereInput | ServerLinkWhereInput[]
+    type?: EnumlinkTypeFilter<"ServerLink"> | $Enums.linkType
+    name?: StringFilter<"ServerLink"> | string
+    description?: StringNullableFilter<"ServerLink"> | string | null
+    createdAt?: DateTimeFilter<"ServerLink"> | Date | string
+    workingIn?: StringNullableListFilter<"ServerLink">
   }, "id" | "url">
 
-  export type FtpLinkOrderByWithAggregationInput = {
+  export type ServerLinkOrderByWithAggregationInput = {
     id?: SortOrder
+    type?: SortOrder
     name?: SortOrder
     url?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     workingIn?: SortOrder
-    _count?: FtpLinkCountOrderByAggregateInput
-    _max?: FtpLinkMaxOrderByAggregateInput
-    _min?: FtpLinkMinOrderByAggregateInput
+    _count?: ServerLinkCountOrderByAggregateInput
+    _max?: ServerLinkMaxOrderByAggregateInput
+    _min?: ServerLinkMinOrderByAggregateInput
   }
 
-  export type FtpLinkScalarWhereWithAggregatesInput = {
-    AND?: FtpLinkScalarWhereWithAggregatesInput | FtpLinkScalarWhereWithAggregatesInput[]
-    OR?: FtpLinkScalarWhereWithAggregatesInput[]
-    NOT?: FtpLinkScalarWhereWithAggregatesInput | FtpLinkScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"FtpLink"> | string
-    name?: StringWithAggregatesFilter<"FtpLink"> | string
-    url?: StringWithAggregatesFilter<"FtpLink"> | string
-    description?: StringNullableWithAggregatesFilter<"FtpLink"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"FtpLink"> | Date | string
-    workingIn?: StringNullableListFilter<"FtpLink">
-  }
-
-  export type IpTvLinkWhereInput = {
-    AND?: IpTvLinkWhereInput | IpTvLinkWhereInput[]
-    OR?: IpTvLinkWhereInput[]
-    NOT?: IpTvLinkWhereInput | IpTvLinkWhereInput[]
-    id?: StringFilter<"IpTvLink"> | string
-    name?: StringFilter<"IpTvLink"> | string
-    url?: StringFilter<"IpTvLink"> | string
-    description?: StringNullableFilter<"IpTvLink"> | string | null
-    createdAt?: DateTimeFilter<"IpTvLink"> | Date | string
-    workingIn?: StringNullableListFilter<"IpTvLink">
-  }
-
-  export type IpTvLinkOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    url?: SortOrder
-    description?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    workingIn?: SortOrder
-  }
-
-  export type IpTvLinkWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    url?: string
-    AND?: IpTvLinkWhereInput | IpTvLinkWhereInput[]
-    OR?: IpTvLinkWhereInput[]
-    NOT?: IpTvLinkWhereInput | IpTvLinkWhereInput[]
-    name?: StringFilter<"IpTvLink"> | string
-    description?: StringNullableFilter<"IpTvLink"> | string | null
-    createdAt?: DateTimeFilter<"IpTvLink"> | Date | string
-    workingIn?: StringNullableListFilter<"IpTvLink">
-  }, "id" | "url">
-
-  export type IpTvLinkOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    url?: SortOrder
-    description?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    workingIn?: SortOrder
-    _count?: IpTvLinkCountOrderByAggregateInput
-    _max?: IpTvLinkMaxOrderByAggregateInput
-    _min?: IpTvLinkMinOrderByAggregateInput
-  }
-
-  export type IpTvLinkScalarWhereWithAggregatesInput = {
-    AND?: IpTvLinkScalarWhereWithAggregatesInput | IpTvLinkScalarWhereWithAggregatesInput[]
-    OR?: IpTvLinkScalarWhereWithAggregatesInput[]
-    NOT?: IpTvLinkScalarWhereWithAggregatesInput | IpTvLinkScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"IpTvLink"> | string
-    name?: StringWithAggregatesFilter<"IpTvLink"> | string
-    url?: StringWithAggregatesFilter<"IpTvLink"> | string
-    description?: StringNullableWithAggregatesFilter<"IpTvLink"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"IpTvLink"> | Date | string
-    workingIn?: StringNullableListFilter<"IpTvLink">
+  export type ServerLinkScalarWhereWithAggregatesInput = {
+    AND?: ServerLinkScalarWhereWithAggregatesInput | ServerLinkScalarWhereWithAggregatesInput[]
+    OR?: ServerLinkScalarWhereWithAggregatesInput[]
+    NOT?: ServerLinkScalarWhereWithAggregatesInput | ServerLinkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServerLink"> | string
+    type?: EnumlinkTypeWithAggregatesFilter<"ServerLink"> | $Enums.linkType
+    name?: StringWithAggregatesFilter<"ServerLink"> | string
+    url?: StringWithAggregatesFilter<"ServerLink"> | string
+    description?: StringNullableWithAggregatesFilter<"ServerLink"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ServerLink"> | Date | string
+    workingIn?: StringNullableListFilter<"ServerLink">
   }
 
   export type SpeedTestCreateInput = {
@@ -4466,130 +3352,74 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type FtpLinkCreateInput = {
+  export type ServerLinkCreateInput = {
     id?: string
+    type: $Enums.linkType
     name: string
     url: string
     description?: string | null
     createdAt?: Date | string
-    workingIn?: FtpLinkCreateworkingInInput | string[]
+    workingIn?: ServerLinkCreateworkingInInput | string[]
   }
 
-  export type FtpLinkUncheckedCreateInput = {
+  export type ServerLinkUncheckedCreateInput = {
     id?: string
+    type: $Enums.linkType
     name: string
     url: string
     description?: string | null
     createdAt?: Date | string
-    workingIn?: FtpLinkCreateworkingInInput | string[]
+    workingIn?: ServerLinkCreateworkingInInput | string[]
   }
 
-  export type FtpLinkUpdateInput = {
+  export type ServerLinkUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumlinkTypeFieldUpdateOperationsInput | $Enums.linkType
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: FtpLinkUpdateworkingInInput | string[]
+    workingIn?: ServerLinkUpdateworkingInInput | string[]
   }
 
-  export type FtpLinkUncheckedUpdateInput = {
+  export type ServerLinkUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumlinkTypeFieldUpdateOperationsInput | $Enums.linkType
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: FtpLinkUpdateworkingInInput | string[]
+    workingIn?: ServerLinkUpdateworkingInInput | string[]
   }
 
-  export type FtpLinkCreateManyInput = {
+  export type ServerLinkCreateManyInput = {
     id?: string
+    type: $Enums.linkType
     name: string
     url: string
     description?: string | null
     createdAt?: Date | string
-    workingIn?: FtpLinkCreateworkingInInput | string[]
+    workingIn?: ServerLinkCreateworkingInInput | string[]
   }
 
-  export type FtpLinkUpdateManyMutationInput = {
+  export type ServerLinkUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumlinkTypeFieldUpdateOperationsInput | $Enums.linkType
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: FtpLinkUpdateworkingInInput | string[]
+    workingIn?: ServerLinkUpdateworkingInInput | string[]
   }
 
-  export type FtpLinkUncheckedUpdateManyInput = {
+  export type ServerLinkUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumlinkTypeFieldUpdateOperationsInput | $Enums.linkType
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: FtpLinkUpdateworkingInInput | string[]
-  }
-
-  export type IpTvLinkCreateInput = {
-    id?: string
-    name: string
-    url: string
-    description?: string | null
-    createdAt?: Date | string
-    workingIn?: IpTvLinkCreateworkingInInput | string[]
-  }
-
-  export type IpTvLinkUncheckedCreateInput = {
-    id?: string
-    name: string
-    url: string
-    description?: string | null
-    createdAt?: Date | string
-    workingIn?: IpTvLinkCreateworkingInInput | string[]
-  }
-
-  export type IpTvLinkUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: IpTvLinkUpdateworkingInInput | string[]
-  }
-
-  export type IpTvLinkUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: IpTvLinkUpdateworkingInInput | string[]
-  }
-
-  export type IpTvLinkCreateManyInput = {
-    id?: string
-    name: string
-    url: string
-    description?: string | null
-    createdAt?: Date | string
-    workingIn?: IpTvLinkCreateworkingInInput | string[]
-  }
-
-  export type IpTvLinkUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: IpTvLinkUpdateworkingInInput | string[]
-  }
-
-  export type IpTvLinkUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    workingIn?: IpTvLinkUpdateworkingInInput | string[]
+    workingIn?: ServerLinkUpdateworkingInInput | string[]
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4712,6 +3542,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumlinkTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.linkType | EnumlinkTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumlinkTypeFilter<$PrismaModel> | $Enums.linkType
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -4740,8 +3577,9 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type FtpLinkCountOrderByAggregateInput = {
+  export type ServerLinkCountOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     name?: SortOrder
     url?: SortOrder
     description?: SortOrder
@@ -4749,20 +3587,32 @@ export namespace Prisma {
     workingIn?: SortOrder
   }
 
-  export type FtpLinkMaxOrderByAggregateInput = {
+  export type ServerLinkMaxOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     name?: SortOrder
     url?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
   }
 
-  export type FtpLinkMinOrderByAggregateInput = {
+  export type ServerLinkMinOrderByAggregateInput = {
     id?: SortOrder
+    type?: SortOrder
     name?: SortOrder
     url?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type EnumlinkTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.linkType | EnumlinkTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumlinkTypeWithAggregatesFilter<$PrismaModel> | $Enums.linkType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumlinkTypeFilter<$PrismaModel>
+    _max?: NestedEnumlinkTypeFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4783,31 +3633,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IpTvLinkCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    url?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-    workingIn?: SortOrder
-  }
-
-  export type IpTvLinkMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    url?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type IpTvLinkMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    url?: SortOrder
-    description?: SortOrder
-    createdAt?: SortOrder
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -4824,24 +3649,19 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type FtpLinkCreateworkingInInput = {
+  export type ServerLinkCreateworkingInInput = {
     set: string[]
+  }
+
+  export type EnumlinkTypeFieldUpdateOperationsInput = {
+    set?: $Enums.linkType
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
-  export type FtpLinkUpdateworkingInInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type IpTvLinkCreateworkingInInput = {
-    set: string[]
-  }
-
-  export type IpTvLinkUpdateworkingInInput = {
+  export type ServerLinkUpdateworkingInInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -4940,6 +3760,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumlinkTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.linkType | EnumlinkTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumlinkTypeFilter<$PrismaModel> | $Enums.linkType
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -4952,6 +3779,16 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumlinkTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.linkType | EnumlinkTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.linkType[] | ListEnumlinkTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumlinkTypeWithAggregatesFilter<$PrismaModel> | $Enums.linkType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumlinkTypeFilter<$PrismaModel>
+    _max?: NestedEnumlinkTypeFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {

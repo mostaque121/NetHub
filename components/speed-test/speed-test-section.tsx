@@ -53,42 +53,59 @@ export default function SpeedTestSection() {
 
   // ------------------- DOWNLOAD TEST -------------------
   const runDownloadTest = async () => {
-    const fileUrl = "/test-files/test20MB.bin";
-    const targetSec = 8;
+    const fileUrl = "/test-files/test20MB.bin"; // replace with real test file URL
+    const targetSec = 8; // test duration in seconds
     let totalBytes = 0;
     const startTime = performance.now();
     let lastUpdate = 0;
 
-    const fetchFileChunk = async () => {
-      const res = await fetch(fileUrl, { cache: "no-store" });
-      const reader = res.body?.getReader();
-      if (!reader) return 0;
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    // Automatically stop fetching after targetSec
+    const timeoutId = setTimeout(() => controller.abort(), targetSec * 1000);
+
+    try {
+      const res = await fetch(fileUrl, { cache: "no-store", signal });
+      if (!res.body) throw new Error("No response body available");
+
+      const reader = res.body.getReader();
 
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
+
         totalBytes += value?.length || 0;
 
         const elapsedSec = (performance.now() - startTime) / 1000;
         const now = performance.now();
+
+        // Update live speed every 300ms
         if (now - lastUpdate > 300) {
           const speedMbps = ((totalBytes / 1024 / 1024) * 8) / elapsedSec;
-          setLiveData(speedMbps);
+          setLiveData(speedMbps); // your live update function
           lastUpdate = now;
         }
-        if (elapsedSec >= targetSec) break;
       }
-    };
-
-    while ((performance.now() - startTime) / 1000 < targetSec) {
-      await fetchFileChunk();
+    } catch (err: unknown) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        // Fetch was aborted due to timeout — expected behavior
+      } else {
+        // Unexpected error
+        console.error("Download test error:", err);
+        throw err;
+      }
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     const elapsedSec = (performance.now() - startTime) / 1000;
     const finalSpeed = ((totalBytes / 1024 / 1024) * 8) / elapsedSec;
 
+    // Final updates
     setSpeedData(finalSpeed);
     setLiveData(finalSpeed);
+
     await saveSpeedTest({
       isp: networkInfo.isp,
       city: networkInfo.city,

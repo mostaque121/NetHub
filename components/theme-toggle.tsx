@@ -9,7 +9,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative inline-flex h-8 w-14 items-center rounded-full bg-secondary border border-border transition-all duration-300 hover:glow-cyan focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+      className="relative inline-flex cursor-pointer h-8 w-14 items-center rounded-full bg-secondary border border-border transition-all duration-300 hover:glow-cyan focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
       aria-label="Toggle theme"
     >
       {/* Track glow effect */}

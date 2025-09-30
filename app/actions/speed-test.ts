@@ -43,6 +43,26 @@ export const getLatestTest = unstable_cache(
   }
 );
 
+export async function deleteOldSpeedTests() {
+  // Step 1: Get the latest 20 entries
+  const latestTests = await prisma.speedTest.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 20,
+    select: { id: true }, // only need IDs
+  });
+
+  const latestIds = latestTests.map((test) => test.id);
+
+  // Step 2: Delete everything not in the latestIds
+  const deleted = await prisma.speedTest.deleteMany({
+    where: {
+      id: { notIn: latestIds },
+    },
+  });
+
+  return deleted;
+}
+
 export async function getNetworkInfo(clientIp: string) {
   try {
     // Fetch info from ip-api using the client IP

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/contexts/theme-context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Suspense } from "react";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,6 +39,7 @@ export default function RootLayout({
               <Navigation />
               {children}
             </div>
+            <Toaster />
           </Suspense>
         </ThemeProvider>
       </body>

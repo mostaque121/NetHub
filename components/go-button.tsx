@@ -6,10 +6,10 @@ export default function GoButton({
   downloadSpeed?: number;
 }) {
   return (
-    <div className="flex items-center justify-center w-[250px] h-[250px]">
+    <div className="flex cursor-pointer items-center justify-center w-[250px] h-[250px]">
       <div className="relative flex items-center justify-center w-full h-full rounded-full bg-card">
-        <div className="border-primary/60  shadow-[0_0_20px_15px_rgba(94,234,212,0.6)] border-8 rounded-full">
-          <div className="flex items-center justify-center w-48 h-48 rounded-full border-8 border-primary ">
+        <div className="border-primary/60 shadow-[0_0_20px_15px_rgba(94,234,212,0.6)] border-8 rounded-full">
+          <div className="flex items-center  justify-center w-48 h-48 rounded-full border-8 border-primary ">
             {downloadSpeed ? (
               <div className="flex flex-col items-center text-card-foreground">
                 <Download className="w-5 h-5 text-primary" />

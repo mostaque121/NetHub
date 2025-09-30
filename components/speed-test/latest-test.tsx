@@ -1,18 +1,19 @@
 import { getLatestTest } from "@/app/actions/speed-test";
 import { format } from "date-fns";
 import { Clock, Zap } from "lucide-react";
+import DeleteOldTest from "./delete-old-test";
 
 export default async function LatestSpeedTest() {
   const LatestSpeedTest = await getLatestTest();
 
   const getSpeedColor = (speed: number) => {
-    if (speed >= 50) return "text-primary";
-    if (speed >= 25) return "text-yellow-400";
+    if (speed >= 10) return "text-primary";
+    if (speed >= 5) return "text-yellow-400";
     return "text-red-400";
   };
 
   return (
-    <div className="border-border/50 px-4 md:px-8 py-12 bg-card/50 backdrop-blur-sm">
+    <div className="border-border/50 container mx-auto px-4 md:px-8 py-12 bg-card/50 backdrop-blur-sm">
       <div className="pb-6">
         <h2 className="flex items-center space-x-2">
           <Clock className="w-5 h-5 text-primary" />
@@ -33,10 +34,10 @@ export default async function LatestSpeedTest() {
           </div>
         ) : (
           <div className="space-y-3">
-            {LatestSpeedTest.slice(0, 6).map((result, index) => (
+            {LatestSpeedTest.map((result, index) => (
               <div
                 key={index}
-                className="p-4 bg-secondary/30 rounded-lg border border-border/30 hover:bg-secondary/50 transition-colors"
+                className="p-4 bg-secondary rounded-lg border border-border hover:bg-secondary/50 transition-colors"
               >
                 <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center items-center">
                   {/* Time */}
@@ -66,6 +67,9 @@ export default async function LatestSpeedTest() {
             ))}
           </div>
         )}
+      </div>
+      <div className="text-center pt-6">
+        <DeleteOldTest />
       </div>
     </div>
   );

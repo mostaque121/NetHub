@@ -101,17 +101,9 @@ exports.Prisma.SpeedTestScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.FtpLinkScalarFieldEnum = {
+exports.Prisma.ServerLinkScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  url: 'url',
-  description: 'description',
-  createdAt: 'createdAt',
-  workingIn: 'workingIn'
-};
-
-exports.Prisma.IpTvLinkScalarFieldEnum = {
-  id: 'id',
+  type: 'type',
   name: 'name',
   url: 'url',
   description: 'description',
@@ -133,12 +125,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.linkType = exports.$Enums.linkType = {
+  TV: 'TV',
+  FTP: 'FTP'
+};
 
 exports.Prisma.ModelName = {
   SpeedTest: 'SpeedTest',
-  FtpLink: 'FtpLink',
-  IpTvLink: 'IpTvLink'
+  ServerLink: 'ServerLink'
 };
 /**
  * Create the Client
@@ -169,7 +163,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -179,7 +173,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -188,22 +181,15 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel SpeedTest {\n  id        String   @id @default(cuid())\n  isp       String\n  city      String\n  country   String\n  download  Float\n  createdAt DateTime @default(now())\n}\n\nmodel FtpLink {\n  id          String   @id @default(cuid())\n  name        String\n  url         String   @unique\n  description String?\n  createdAt   DateTime @default(now())\n  workingIn   String[]\n}\n\nmodel IpTvLink {\n  id          String   @id @default(cuid())\n  name        String\n  url         String   @unique\n  description String?\n  createdAt   DateTime @default(now())\n  workingIn   String[]\n}\n",
-  "inlineSchemaHash": "a9bbc441bbee667ae89ef3ca4eff1ded02e24891e74cc05b6a05859a59626f15",
-  "copyEngine": true
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel SpeedTest {\n  id        String   @id @default(cuid())\n  isp       String\n  city      String\n  country   String\n  download  Float\n  createdAt DateTime @default(now())\n}\n\nmodel ServerLink {\n  id          String   @id @default(cuid())\n  type        linkType\n  name        String\n  url         String   @unique\n  description String?\n  createdAt   DateTime @default(now())\n  workingIn   String[]\n}\n\nenum linkType {\n  TV\n  FTP\n}\n",
+  "inlineSchemaHash": "3e96dc036f0e2ed36bac6a7edea205d88a50e909cb2f22a73a6b942394bf7a2e",
+  "copyEngine": false
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"SpeedTest\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"download\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"FtpLink\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"workingIn\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null},\"IpTvLink\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"workingIn\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"SpeedTest\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"isp\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"city\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"country\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"download\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"ServerLink\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"linkType\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"workingIn\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
-config.engineWasm = {
-  getRuntime: async () => require('./query_engine_bg.js'),
-  getQueryEngineWasmModule: async () => {
-    const loader = (await import('#wasm-engine-loader')).default
-    const engine = (await loader).default
-    return engine
-  }
-}
+config.engineWasm = undefined
 config.compilerWasm = undefined
 
 config.injectableEdgeEnv = () => ({

@@ -129,17 +129,9 @@ exports.Prisma.SpeedTestScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.FtpLinkScalarFieldEnum = {
+exports.Prisma.ServerLinkScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  url: 'url',
-  description: 'description',
-  createdAt: 'createdAt',
-  workingIn: 'workingIn'
-};
-
-exports.Prisma.IpTvLinkScalarFieldEnum = {
-  id: 'id',
+  type: 'type',
   name: 'name',
   url: 'url',
   description: 'description',
@@ -161,12 +153,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.linkType = exports.$Enums.linkType = {
+  TV: 'TV',
+  FTP: 'FTP'
+};
 
 exports.Prisma.ModelName = {
   SpeedTest: 'SpeedTest',
-  FtpLink: 'FtpLink',
-  IpTvLink: 'IpTvLink'
+  ServerLink: 'ServerLink'
 };
 
 /**

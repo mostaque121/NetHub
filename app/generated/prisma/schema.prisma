@@ -17,8 +17,9 @@ model SpeedTest {
   createdAt DateTime @default(now())
 }
 
-model FtpLink {
+model ServerLink {
   id          String   @id @default(cuid())
+  type        linkType
   name        String
   url         String   @unique
   description String?
@@ -26,11 +27,7 @@ model FtpLink {
   workingIn   String[]
 }
 
-model IpTvLink {
-  id          String   @id @default(cuid())
-  name        String
-  url         String   @unique
-  description String?
-  createdAt   DateTime @default(now())
-  workingIn   String[]
+enum linkType {
+  TV
+  FTP
 }
