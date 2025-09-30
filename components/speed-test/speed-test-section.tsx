@@ -27,8 +27,28 @@ export default function SpeedTestSection() {
   // ------------------- Fetch Network Info -------------------
 
   useEffect(() => {
-    // Call server action
-    getNetworkInfo().then(setNetworkInfo);
+    const fetchNetworkInfo = async () => {
+      try {
+        // Step 1: Get client IP from ipify
+        const ipRes = await fetch("https://api.ipify.org/?format=json");
+        const ipData = await ipRes.json();
+
+        // Step 2: Fetch ISP info via server action
+        const info = await getNetworkInfo(ipData.ip);
+        setNetworkInfo(info);
+      } catch (err) {
+        console.error(err);
+        setNetworkInfo({
+          ip: "Failed to load",
+          isp: "Failed to load",
+          city: "Failed to load",
+          country: "Failed to load",
+          timezone: "Failed to load",
+        });
+      }
+    };
+
+    fetchNetworkInfo();
   }, []);
 
   // ------------------- DOWNLOAD TEST -------------------
@@ -40,7 +60,7 @@ export default function SpeedTestSection() {
     let lastUpdate = 0;
 
     const fetchFileChunk = async () => {
-      const res = await fetch(fileUrl);
+      const res = await fetch(fileUrl, { cache: "no-store" });
       const reader = res.body?.getReader();
       if (!reader) return 0;
 

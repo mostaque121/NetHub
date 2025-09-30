@@ -43,21 +43,21 @@ export const getLatestTest = unstable_cache(
   }
 );
 
-export async function getNetworkInfo() {
+export async function getNetworkInfo(clientIp: string) {
   try {
-    // Fetch HTTP API server-side (no mixed content issues)
-    const res = await fetch("http://ip-api.com/json");
+    // Fetch info from ip-api using the client IP
+    const res = await fetch(`http://ip-api.com/json/${clientIp}`);
     const data = await res.json();
 
     return {
-      ip: data.query || "Unknown",
+      ip: data.query || clientIp,
       isp: data.org || "Unknown ISP",
       city: data.city || "Unknown",
       country: data.country || "Unknown",
       timezone: data.timezone || "Unknown",
     };
   } catch (error) {
-    console.error("Failed to fetch network info:", error);
+    console.error(error);
     return {
       ip: "Failed to load",
       isp: "Failed to load",
