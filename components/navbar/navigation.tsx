@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Gauge, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AuthNavBtn } from "../navbar/auth-nav";
 import { ThemeToggle } from "./theme-toggle";
 
 const navItems = [
@@ -59,6 +60,8 @@ export function Navigation() {
                   </Link>
                 );
               })}
+
+              <AuthNavBtn isActive={pathname === "/admin-login"} />
             </div>
             <ThemeToggle />
           </div>
@@ -86,6 +89,8 @@ export function Navigation() {
             </Link>
           );
         })}
+
+        <AuthNavBtn isActive={pathname === "/admin-login"} />
       </div>
     </nav>
   );

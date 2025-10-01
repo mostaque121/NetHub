@@ -1,5 +1,6 @@
 "use server";
 
+import { checkAccess } from "@/lib/check-admin";
 import prisma from "@/lib/prisma";
 import { revalidateTag, unstable_cache } from "next/cache";
 
@@ -44,6 +45,7 @@ export const getLatestTest = unstable_cache(
 );
 
 export async function deleteOldSpeedTests() {
+  await checkAccess();
   // Step 1: Get the latest 20 entries
   const latestTests = await prisma.speedTest.findMany({
     orderBy: { createdAt: "desc" },

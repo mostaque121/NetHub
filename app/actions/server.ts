@@ -1,4 +1,5 @@
 "use server";
+import { checkAccess } from "@/lib/check-admin";
 import prisma from "@/lib/prisma";
 import { revalidateTag, unstable_cache } from "next/cache";
 import z from "zod";
@@ -21,6 +22,7 @@ const serverSchema = z.object({
 type serverFormValues = z.infer<typeof serverSchema>;
 
 export async function addServer(data: serverFormValues) {
+  await checkAccess();
   const parsed = serverSchema.safeParse(data);
 
   if (!parsed.success) {
@@ -44,6 +46,8 @@ export async function addServer(data: serverFormValues) {
 }
 
 export async function updateServer(id: string, data: serverFormValues) {
+  await checkAccess();
+
   const parsed = serverSchema.safeParse(data);
 
   if (!parsed.success) {
@@ -69,6 +73,7 @@ export async function updateServer(id: string, data: serverFormValues) {
 }
 
 export async function deleteServer(id: string) {
+  await checkAccess();
   try {
     const serverToDelete = await prisma.serverLink.findUnique({
       where: { id },

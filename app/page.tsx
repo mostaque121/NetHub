@@ -49,7 +49,7 @@ export default function HomePage() {
           }
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href={"/test"}>
+          <Link href={"/speedtest"}>
             <Button size="lg" className="glow-cyan cursor-pointer">
               <Gauge className="w-5 h-5 mr-2" />
               Test Speed Now

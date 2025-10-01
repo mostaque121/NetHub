@@ -3,7 +3,7 @@ import { deleteServer } from "@/app/actions/server";
 import { ServerLink } from "@/app/generated/prisma";
 import { Tv } from "lucide-react";
 import { useMemo, useState } from "react";
-import ServerCard from "../ftp-card";
+import ServerCard from "../card/ftp-card";
 import { ConfirmDialog } from "../ui/confirm-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import ServerControl from "./server-control";

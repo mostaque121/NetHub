@@ -1,7 +1,7 @@
 "use client";
-import GoButton from "@/components/go-button";
-import SpeedometerGauge from "@/components/speedometer-gauge";
 import { AnimatePresence, motion } from "motion/react";
+import GoButton from "./go-button";
+import SpeedometerGauge from "./speedometer-gauge";
 
 interface SectionProps {
   start: boolean;

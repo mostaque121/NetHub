@@ -1,9 +1,16 @@
 "use client";
 import { linkType, ServerLink } from "@/app/generated/prisma";
+import { useSession } from "@/contexts/session-provider";
 import { Folder, Pencil, Play, Trash2, Tv } from "lucide-react";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 interface ServerCardProps {
   id: string;
@@ -42,8 +49,10 @@ export default function ServerCard({
     createdAt,
   };
 
+  const { isAuth } = useSession();
+
   return (
-    <Card className="group gap-4 hover:glow-cyan transition-all duration-300 border-border bg-card backdrop-blur-sm">
+    <Card className="group gap-0 hover:glow-cyan transition-all duration-300 border-border bg-card backdrop-blur-sm">
       <CardHeader>
         <div className="flex items-start justify-between">
           {/* Title + Type */}
@@ -63,30 +72,32 @@ export default function ServerCard({
           </div>
 
           {/* Hover actions */}
-          <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-all">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-muted-foreground cursor-pointer hover:text-primary hover:bg-muted"
-              onClick={() => {
-                setToEditServer(serverData);
-                setIsEditOpen(true);
-              }}
-            >
-              <Pencil className="w-4 h-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-destructive cursor-pointer hover:text-destructive"
-              onClick={() => {
-                setToDeleteServer(serverData);
-                setIsDeleteOpen(true);
-              }}
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
-          </div>
+          {isAuth && (
+            <div className="flex space-x-2  transition-all">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground cursor-pointer hover:text-primary hover:bg-muted"
+                onClick={() => {
+                  setToEditServer(serverData);
+                  setIsEditOpen(true);
+                }}
+              >
+                <Pencil className="w-4 h-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-destructive cursor-pointer hover:text-destructive"
+                onClick={() => {
+                  setToDeleteServer(serverData);
+                  setIsDeleteOpen(true);
+                }}
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Description */}
@@ -115,16 +126,17 @@ export default function ServerCard({
             ))}
           </div>
         )}
-
+      </CardContent>
+      <CardFooter className="mt-auto">
         {/* Play button */}
         <Button
-          className="w-full group-hover:glow-cyan cursor-pointer transition-all duration-300"
+          className="w-full group-hover:glow-cyan align-text-bottom cursor-pointer transition-all duration-300"
           onClick={() => window.open(url, "_blank")}
         >
           <Play className="w-4 h-4 mr-2" />
           {type === "TV" ? "Open Stream" : "Open FTP"}
         </Button>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }
