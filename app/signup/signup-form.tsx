@@ -1,15 +1,11 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
-
-import { cn } from "@/lib/utils";
-
-import { login } from "@/app/actions/auth";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -22,21 +18,25 @@ import { FormError } from "@/components/ui/form-error";
 import { Input } from "@/components/ui/input";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { PasswordInput } from "@/components/ui/password-input";
-import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import z from "zod";
 
-export function LoginForm({
+export function SignUpform({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const router = useRouter();
   const [error, setError] = useState<string>("");
 
-  const signInSchema = z.object({
-    username: z
+  const signUpSchema = z.object({
+    name: z
       .string()
-      .nonempty("userName is required")
-      .min(6, "userName must be more than 8 characters"),
+      .min(8, "Name must be more than 2 characters")
+      .max(32, "Name must be less than 32 characters"),
+    email: z.email(),
     password: z
       .string()
       .nonempty("Password is required")
@@ -44,26 +44,30 @@ export function LoginForm({
       .max(32, "Password must be less than 32 characters"),
   });
 
-  type LoginFormData = z.infer<typeof signInSchema>;
+  type SignupFormData = z.infer<typeof signUpSchema>;
 
-  const form = useForm<z.infer<typeof signInSchema>>({
-    resolver: zodResolver(signInSchema),
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
-      username: "",
+      name: "",
+      email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (credential: SignupFormData) => {
     setError("");
 
     try {
-      const result = await login(data);
-      if (result.success) {
-        router.push("/");
-      } else {
-        setError(result.error || "Login failed");
-      }
+      const { data, error } = await authClient.signUp.email({
+        name: credential.name, // required
+        email: credential.email, // required
+        password: credential.password, // required
+        callbackURL: "/",
+      });
+      console.log(data);
+      if (error)
+        setError(error.message || "An error occurred. Please try again.");
     } catch {
       setError("An error occurred. Please try again.");
     }
@@ -71,29 +75,41 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Create an account</CardTitle>
+          <CardDescription>
+            Enter your information below to create your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-8 p-6 md:p-8 w-full"
             >
               <div className="flex flex-col gap-6">
-                <div className="flex flex-col items-center text-center">
-                  <h1 className="text-2xl font-bold">Welcome back</h1>
-                  <p className="text-muted-foreground text-balance">
-                    Login to your Admin account
-                  </p>
-                </div>
-
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input placeholder="Enter username" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter Email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -120,39 +136,18 @@ export function LoginForm({
                   <LoadingButton
                     type="submit"
                     loading={form.formState.isSubmitting}
-                    loadingText="Signing in..."
+                    loadingText="Signing up..."
                     className="w-full"
                   >
-                    Sign In
+                    Sign Up
                   </LoadingButton>
                   <FormError message={error} />
                 </div>
               </div>
             </form>
           </Form>
-
-          <div className="bg-muted relative hidden md:block">
-            <Image
-              src="/login.jpg"
-              alt="Login illustration"
-              fill
-              className="object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
         </CardContent>
       </Card>
-
-      <div className="text-muted-foreground text-center text-xs text-balance">
-        By clicking continue, you agree to our{" "}
-        <a href="#" className="underline underline-offset-4 hover:text-primary">
-          Terms of Service
-        </a>{" "}
-        and{" "}
-        <a href="#" className="underline underline-offset-4 hover:text-primary">
-          Privacy Policy
-        </a>
-        .
-      </div>
     </div>
   );
 }

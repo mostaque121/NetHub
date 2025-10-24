@@ -1,7 +1,6 @@
 "use client";
-import { logout } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
-import { useSession } from "@/contexts/session-provider";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils"; // your cn function
 import { Loader2, LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
@@ -12,16 +11,15 @@ interface AuthNav {
 }
 
 export function AuthNavBtn({ isActive }: AuthNav) {
-  const { isAuth, refetch, isLoading } = useSession();
+  const { data: session, isPending: isLoading } = authClient.useSession();
+  const isAuth = Boolean(session?.user);
 
   const [loggingOut, setLoggingOut] = useState(false);
 
   async function handleLogout() {
     setLoggingOut(true);
     try {
-      await logout();
-      // Refetch session to update client state
-      await refetch();
+      await authClient.signOut();
       setLoggingOut(false);
     } catch (error) {
       console.error("Logout failed:", error);

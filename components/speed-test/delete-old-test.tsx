@@ -1,7 +1,7 @@
 "use client";
 
 import { deleteOldSpeedTests } from "@/app/actions/speed-test";
-import { useSession } from "@/contexts/session-provider";
+import { authClient } from "@/lib/auth-client";
 import { Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,7 +11,8 @@ import { ConfirmDialog } from "../ui/confirm-dialog";
 export default function DeleteOldTest() {
   const [loading, setLoading] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const { isAuth } = useSession();
+  const { data: session } = authClient.useSession();
+  const isAuth = Boolean(session?.user);
 
   const handleClick = async () => {
     setIsDeleteOpen(true);

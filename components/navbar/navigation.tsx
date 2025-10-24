@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AuthNavBtn } from "../navbar/auth-nav";
 import { ThemeToggle } from "./theme-toggle";
+import UserSection from "./user-section";
 
 const navItems = [
   {
@@ -61,7 +62,7 @@ export function Navigation() {
                 );
               })}
 
-              <AuthNavBtn isActive={pathname === "/admin-login"} />
+              <UserSection />
             </div>
             <ThemeToggle />
           </div>

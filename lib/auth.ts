@@ -1,0 +1,38 @@
+import { Redis } from "@upstash/redis";
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { nextCookies } from "better-auth/next-js";
+import { admin, multiSession } from "better-auth/plugins";
+import prisma from "./prisma";
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+export const auth = betterAuth({
+  database: prismaAdapter(prisma, {
+    provider: "postgresql",
+  }),
+  plugins: [admin(), multiSession(), nextCookies()],
+  emailAndPassword: {
+    enabled: true,
+  },
+
+  secondaryStorage: {
+    get: async (key) => {
+      const data = await redis.get<string>(key);
+      return data;
+    },
+    set: async (key, value, ttl) => {
+      if (ttl) {
+        await redis.set(key, value, { ex: ttl }); // ttl in seconds
+      } else {
+        await redis.set(key, value);
+      }
+    },
+    delete: async (key) => {
+      await redis.del(key);
+    },
+  },
+});

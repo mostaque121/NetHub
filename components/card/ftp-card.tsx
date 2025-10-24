@@ -1,6 +1,6 @@
 "use client";
 import { linkType, ServerLink } from "@/app/generated/prisma";
-import { useSession } from "@/contexts/session-provider";
+import { authClient } from "@/lib/auth-client";
 import { Folder, Pencil, Play, Trash2, Tv } from "lucide-react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -48,9 +48,8 @@ export default function ServerCard({
     workingIn,
     createdAt,
   };
-
-  const { isAuth } = useSession();
-
+  const { data: session } = authClient.useSession();
+  const isAuth = Boolean(session?.user);
   return (
     <Card className="group gap-0 hover:glow-cyan transition-all duration-300 border-border bg-card backdrop-blur-sm">
       <CardHeader>

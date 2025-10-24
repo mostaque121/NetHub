@@ -1,13 +1,16 @@
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { verifySession } from "./auth/session";
+import { auth } from "./auth";
 
 export async function checkAccess() {
   try {
-    const session = await verifySession();
-    if (!session.isAuth) {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+    if (!session || session.user.role !== "admin") {
       redirect("/admin-login");
     } else {
-      return session.username;
+      return session.user.name;
     }
   } catch (error) {
     console.error("Error while checking admin status:", error);

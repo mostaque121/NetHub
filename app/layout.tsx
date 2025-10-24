@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/navbar/navigation";
-import { SessionProvider } from "@/contexts/session-provider";
 import { ThemeProvider } from "@/contexts/theme-context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -34,17 +33,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider>
-          <ThemeProvider>
-            <Suspense fallback={null}>
-              <div className="bg-background">
-                <Navigation />
-                {children}
-              </div>
-              <Toaster />
-            </Suspense>
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider>
+          <Suspense fallback={null}>
+            <div className="bg-background">
+              <Navigation />
+              {children}
+            </div>
+            <Toaster />
+          </Suspense>
+        </ThemeProvider>
       </body>
     </html>
   );

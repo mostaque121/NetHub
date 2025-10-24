@@ -1,15 +1,11 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
-
-import { cn } from "@/lib/utils";
-
-import { login } from "@/app/actions/auth";
-import { Card, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -22,21 +18,21 @@ import { FormError } from "@/components/ui/form-error";
 import { Input } from "@/components/ui/input";
 import { LoadingButton } from "@/components/ui/loading-button";
 import { PasswordInput } from "@/components/ui/password-input";
-import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import z from "zod";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const router = useRouter();
   const [error, setError] = useState<string>("");
 
   const signInSchema = z.object({
-    username: z
-      .string()
-      .nonempty("userName is required")
-      .min(6, "userName must be more than 8 characters"),
+    email: z.email(),
     password: z
       .string()
       .nonempty("Password is required")
@@ -49,21 +45,24 @@ export function LoginForm({
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (data: LoginFormData) => {
+  const onSubmit = async (credential: LoginFormData) => {
     setError("");
 
     try {
-      const result = await login(data);
-      if (result.success) {
-        router.push("/");
-      } else {
-        setError(result.error || "Login failed");
-      }
+      const { data, error } = await authClient.signIn.email({
+        email: credential.email,
+        password: credential.password,
+        rememberMe: true,
+        callbackURL: "/",
+      });
+      console.log(data);
+      if (error)
+        setError(error.message || "An error occurred. Please try again.");
     } catch {
       setError("An error occurred. Please try again.");
     }
@@ -71,8 +70,14 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Login to your account</CardTitle>
+          <CardDescription>
+            Enter your email below to login to your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -88,12 +93,12 @@ export function LoginForm({
 
                 <FormField
                   control={form.control}
-                  name="username"
+                  name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Username</FormLabel>
+                      <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter username" {...field} />
+                        <Input placeholder="Enter Email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -130,29 +135,8 @@ export function LoginForm({
               </div>
             </form>
           </Form>
-
-          <div className="bg-muted relative hidden md:block">
-            <Image
-              src="/login.jpg"
-              alt="Login illustration"
-              fill
-              className="object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
         </CardContent>
       </Card>
-
-      <div className="text-muted-foreground text-center text-xs text-balance">
-        By clicking continue, you agree to our{" "}
-        <a href="#" className="underline underline-offset-4 hover:text-primary">
-          Terms of Service
-        </a>{" "}
-        and{" "}
-        <a href="#" className="underline underline-offset-4 hover:text-primary">
-          Privacy Policy
-        </a>
-        .
-      </div>
     </div>
   );
 }
