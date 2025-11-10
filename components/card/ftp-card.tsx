@@ -51,7 +51,7 @@ export default function ServerCard({
   const { data: session } = authClient.useSession();
   const isAuth = Boolean(session?.user);
   return (
-    <Card className="group gap-0 hover:glow-cyan transition-all duration-300 border-border bg-card backdrop-blur-sm">
+    <Card className="group gap-0 hover:glow-cyan transition-all duration-300 border-border bg-transparent backdrop-blur-sm">
       <CardHeader>
         <div className="flex items-start justify-between">
           {/* Title + Type */}
@@ -133,7 +133,7 @@ export default function ServerCard({
           onClick={() => window.open(url, "_blank")}
         >
           <Play className="w-4 h-4 mr-2" />
-          {type === "TV" ? "Open Stream" : "Open FTP"}
+          Navigate
         </Button>
       </CardFooter>
     </Card>

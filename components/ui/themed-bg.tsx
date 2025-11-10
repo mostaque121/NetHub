@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@/contexts/theme-context";
 
 export function ThemedBackground({ children }: { children: React.ReactNode }) {
   const { theme } = useTheme();
@@ -32,7 +32,7 @@ export function ThemedBackground({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen w-full relative transition-colors duration-500">
       <div
-        className="absolute inset-0 z-0 transition-all duration-700"
+        className="fixed inset-0 z-0 transition-all duration-700"
         style={backgroundStyle}
       />
       <div className="relative z-10">{children}</div>

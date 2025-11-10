@@ -35,11 +35,11 @@ const stats = [
 
 export default function HomePage() {
   return (
-    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-32">
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 ">
-          {"Personal Network"}
+          Personal Network
           <br />
           <span className="text-primary">Command Center</span>
         </h1>
@@ -71,7 +71,7 @@ export default function HomePage() {
           return (
             <Card
               key={index}
-              className="text-center border-border/50 bg-card/50 backdrop-blur-sm"
+              className="text-center border-border bg-transparent"
             >
               <CardContent className="pt-6">
                 <Icon className="w-8 h-8 mx-auto mb-3 text-primary" />
@@ -94,7 +94,7 @@ export default function HomePage() {
           return (
             <Card
               key={index}
-              className="group hover:glow-cyan transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm"
+              className="group hover:glow-cyan transition-all duration-300 border-border bg-transparent backdrop-blur-sm"
             >
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">

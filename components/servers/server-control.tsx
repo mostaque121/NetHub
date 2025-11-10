@@ -26,7 +26,7 @@ export default function ServerControl({
           placeholder="Search channels..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="pl-10 border-border bg-input"
+          className="pl-10 border-border bg-input/10"
         />
       </div>
 
