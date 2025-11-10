@@ -20,9 +20,9 @@ import { WorkingInField } from "../ui/working-in";
 
 export const serverSchema = z.object({
   name: z.string().min(2, "Name must be more than 2 characters"),
-  url: z.string().url("Must be a valid URL"),
+  url: z.url("Must be a valid URL"),
   description: z.string().optional(),
-  type: z.enum(["TV", "FTP"] as [linkType, linkType]),
+  type: z.enum(linkType),
   workingIn: z.array(z.string()).optional(),
 });
 
@@ -149,6 +149,15 @@ export default function ServerForm({ onCloseForm, server }: ServerFormProps) {
                         onChange={() => field.onChange("FTP")}
                       />
                       FTP
+                    </label>
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        value="Dev"
+                        checked={field.value === "DEV"}
+                        onChange={() => field.onChange("DEV")}
+                      />
+                      Dev
                     </label>
                   </div>
                   <FormMessage />

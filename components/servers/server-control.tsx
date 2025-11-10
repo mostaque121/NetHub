@@ -1,4 +1,5 @@
 "use  client";
+import { linkType } from "@/app/generated/prisma";
 import { Search } from "lucide-react";
 import { AddBtn } from "../ui/add-button";
 import { Button } from "../ui/button";
@@ -8,8 +9,8 @@ import ServerForm from "./server-form";
 interface SectionProps {
   searchTerm: string;
   setSearchTerm: (value: string) => void;
-  selectedCategory: "ALL" | "TV" | "FTP";
-  setSelectedCategory: (category: "ALL" | "TV" | "FTP") => void;
+  selectedCategory: "ALL" | linkType;
+  setSelectedCategory: (category: "ALL" | linkType) => void;
 }
 export default function ServerControl({
   searchTerm,
@@ -54,6 +55,14 @@ export default function ServerControl({
             className="cursor-pointer"
           >
             TV
+          </Button>
+          <Button
+            variant={selectedCategory === "DEV" ? "default" : "outline"}
+            size="sm"
+            onClick={() => setSelectedCategory("DEV")}
+            className="cursor-pointer"
+          >
+            Dev
           </Button>
         </div>
         <AddBtn title="Add Server" FormComponent={ServerForm} />

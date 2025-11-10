@@ -211,7 +211,8 @@ exports.Role = exports.$Enums.Role = {
 
 exports.linkType = exports.$Enums.linkType = {
   TV: 'TV',
-  FTP: 'FTP'
+  FTP: 'FTP',
+  DEV: 'DEV'
 };
 
 exports.Prisma.ModelName = {

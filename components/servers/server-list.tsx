@@ -1,6 +1,6 @@
 "use client";
 import { deleteServer } from "@/app/actions/server";
-import { ServerLink } from "@/app/generated/prisma";
+import { linkType, ServerLink } from "@/app/generated/prisma";
 import { Tv } from "lucide-react";
 import { useMemo, useState } from "react";
 import ServerCard from "../card/ftp-card";
@@ -11,9 +11,9 @@ import ServerForm from "./server-form";
 
 export default function ServerList({ servers }: { servers: ServerLink[] }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<
-    "ALL" | "TV" | "FTP"
-  >("ALL");
+  const [selectedCategory, setSelectedCategory] = useState<linkType | "ALL">(
+    "ALL"
+  );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [toDeleteServer, setToDeleteServer] = useState<ServerLink | null>(null);

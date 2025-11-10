@@ -107,4 +107,5 @@ model ServerLink {
 enum linkType {
   TV
   FTP
+  DEV
 }

@@ -58,7 +58,8 @@ export type Role = (typeof Role)[keyof typeof Role]
 
 export const linkType: {
   TV: 'TV',
-  FTP: 'FTP'
+  FTP: 'FTP',
+  DEV: 'DEV'
 };
 
 export type linkType = (typeof linkType)[keyof typeof linkType]
