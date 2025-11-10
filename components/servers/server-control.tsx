@@ -62,7 +62,7 @@ export default function ServerControl({
             onClick={() => setSelectedCategory("DEV")}
             className="cursor-pointer"
           >
-            Dev
+            DEV
           </Button>
         </div>
         <AddBtn title="Add Server" FormComponent={ServerForm} />
